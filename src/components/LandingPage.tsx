@@ -46,31 +46,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
     }));
   }, []);
 
-  // Oryn Login states
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
-
-  const handleLoginSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !password) return;
-    setIsLoggingIn(true);
-    setTimeout(() => {
-      setIsLoggingIn(false);
-      setShowLoginModal(false);
-      onEnter();
-    }, 1200);
-  };
-
-  const handleSocialLogin = (provider: string) => {
-    setIsLoggingIn(true);
-    setTimeout(() => {
-      setIsLoggingIn(false);
-      setShowLoginModal(false);
-      onEnter();
-    }, 800);
-  };
+  // No login states needed
 
   // Animated counters
   const stat1 = useCountUp(12847);
@@ -133,8 +109,8 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             </div>
             <div className="flex items-center gap-3">
               <span className="text-emerald-400 text-xs font-medium hidden sm:block">✦ Free plan available — no credit card</span>
-              <button onClick={() => setShowLoginModal(true)} className="px-4 py-1.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold rounded-full transition-all hover:scale-[1.03] active:scale-95">
-                Start Free →
+              <button onClick={onEnter} className="px-4 py-1.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold rounded-full transition-all hover:scale-[1.03] active:scale-95">
+                Try Demo →
               </button>
             </div>
           </motion.div>
@@ -228,17 +204,8 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
           <div className="falling-star top-[35%] right-[50%]" style={{ animation: "falling-star-diagonal 11s linear infinite", animationDelay: "6.4s" }} />
         </div>
 
-        {/* Navigation */}
-        <nav className="flex items-center justify-between p-6 px-8 md:px-12 z-20 select-none">
-          <div />
-          <button className="text-white hover:opacity-80 transition-opacity focus:outline-none" onClick={() => setShowLoginModal(true)}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-          </button>
-        </nav>
+        {/* Spacer at top */}
+        <div className="h-10 md:h-14" />
 
         {/* Central Display: Tilted Phones (Hero.jpeg) */}
         <main className="relative flex-1 flex flex-col items-center justify-center z-20 w-full max-w-lg mx-auto px-4 mt-2 md:mt-4">
@@ -247,7 +214,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             className="w-full flex justify-center cursor-pointer"
-            onClick={() => setShowLoginModal(true)}
+            onClick={onEnter}
           >
             <img 
               src="/Hero.jpeg" 
@@ -270,13 +237,13 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             <img 
               src="/logo.png" 
               alt="Oryn Logo" 
-              onClick={() => setShowLoginModal(true)}
+              onClick={onEnter}
               className="w-20 h-20 object-contain hover:scale-[1.03] transition-transform duration-300 mb-6 cursor-pointer select-none" 
             />
 
             {/* App Title */}
             <h1 
-              onClick={() => setShowLoginModal(true)}
+              onClick={onEnter}
               className="text-4xl md:text-[44px] font-bold tracking-tight mb-5 text-white cursor-pointer hover:opacity-90 select-none"
             >
               Oryn
@@ -284,7 +251,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
             {/* Tagline */}
             <p 
-              onClick={() => setShowLoginModal(true)}
+              onClick={onEnter}
               className="text-lg text-white/60 font-light tracking-wide max-w-md px-4 cursor-pointer select-none"
             >
               Set goals. Track progress. <strong className="text-white font-semibold">Own</strong> yourself.
@@ -408,8 +375,8 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
         <div className="relative z-10 max-w-2xl mx-auto px-6">
           <h3 className="text-2xl md:text-3xl font-black text-white mb-4">Stop planning to plan. Start building.</h3>
           <p className="text-white/50 mb-6">Join 12,000+ users who replaced their tool stack with one app.</p>
-          <button onClick={() => setShowLoginModal(true)} className="px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-black font-bold rounded-full shadow-lg shadow-orange-500/25 hover:scale-[1.03] active:scale-95 transition-all inline-flex items-center gap-2">
-            Get Started Free <ArrowRight size={18} />
+          <button onClick={onEnter} className="px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-black font-bold rounded-full shadow-lg shadow-orange-500/25 hover:scale-[1.03] active:scale-95 transition-all inline-flex items-center gap-2">
+            Try Demo <ArrowRight size={18} />
           </button>
         </div>
       </div>
@@ -476,8 +443,8 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
                   <li key={i} className="flex items-center gap-3 text-slate-700"><Check size={16} className="text-emerald-500 shrink-0" />{f}</li>
                 ))}
               </ul>
-              <button onClick={() => setShowLoginModal(true)} className="mt-10 w-full py-4 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 transition-colors font-bold text-sm">
-                Start Free
+              <button onClick={onEnter} className="mt-10 w-full py-4 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 transition-colors font-bold text-sm">
+                Try Demo
               </button>
             </motion.div>
 
@@ -498,8 +465,8 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
                   <li key={i} className="flex items-center gap-3 text-orange-900"><Check size={16} className="text-orange-500 shrink-0" />{f}</li>
                 ))}
               </ul>
-              <button onClick={() => setShowLoginModal(true)} className="mt-10 w-full py-4 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-all hover:scale-[1.02] active:scale-95 font-bold text-sm shadow-md shadow-orange-500/20">
-                Go Pro — Start 7-Day Free Trial
+              <button onClick={onEnter} className="mt-10 w-full py-4 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-all hover:scale-[1.02] active:scale-95 font-bold text-sm shadow-md shadow-orange-500/20">
+                Try Demo
               </button>
               <div className="text-center text-[11px] text-orange-700/50 mt-3">Cancel anytime. No questions asked.</div>
             </motion.div>
@@ -553,8 +520,8 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
           <p className="text-white/50 text-lg mb-10 max-w-xl mx-auto">
             Every day without a system is a day your goals drift further. Oryn gives you the framework in under 2 minutes.
           </p>
-          <button onClick={() => setShowLoginModal(true)} className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-amber-500 text-black px-10 py-5 rounded-full font-bold text-lg hover:scale-[1.05] active:scale-95 transition-all shadow-xl shadow-orange-500/20">
-            Start Building Habits Free <ArrowRight size={20} />
+          <button onClick={onEnter} className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-amber-500 text-black px-10 py-5 rounded-full font-bold text-lg hover:scale-[1.05] active:scale-95 transition-all shadow-xl shadow-orange-500/20">
+            Try Demo <ArrowRight size={20} />
           </button>
           <div className="mt-4 text-white/30 text-xs">Free forever on the Hobby plan. No credit card needed.</div>
         </div>
@@ -576,125 +543,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </footer>
 
       {/* ═══════════ ORYN LOGIN MODAL ═══════════ */}
-      <AnimatePresence>
-        {showLoginModal && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-md p-4"
-          >
-            {/* Modal Overlay Close Trigger */}
-            <div className="absolute inset-0" onClick={() => setShowLoginModal(false)} />
-            
-            {/* Modal Box */}
-            <motion.div 
-              initial={{ scale: 0.95, y: 20, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.95, y: 20, opacity: 0 }}
-              transition={{ type: "spring", duration: 0.5 }}
-              className="relative w-full max-w-md bg-[#0d0e12] border border-white/10 rounded-[2rem] p-8 shadow-2xl text-white overflow-hidden z-10"
-            >
-              {/* Decorative radial gradient glow */}
-              <div className="absolute -top-[40%] -right-[40%] w-[80%] h-[80%] bg-orange-500/10 rounded-full blur-[80px] pointer-events-none" />
-              
-              {/* Close Button */}
-              <button 
-                onClick={() => setShowLoginModal(false)}
-                className="absolute top-5 right-5 text-white/40 hover:text-white hover:bg-white/5 p-2 rounded-full transition-all focus:outline-none"
-              >
-                <X size={18} />
-              </button>
-
-              {/* Header */}
-              <div className="flex flex-col items-center text-center mb-8 select-none">
-                <div className="w-14 h-14 bg-[#16181f] border border-white/5 rounded-2xl flex items-center justify-center shadow-lg mb-4 overflow-hidden">
-                  <img src="/logo.png" alt="Oryn Logo" className="w-10 h-10 object-contain" />
-                </div>
-                <h3 className="text-2xl font-bold tracking-tight text-white mb-1">Welcome to Oryn</h3>
-                <p className="text-sm text-white/50">Enter your details to sign in to your workspace</p>
-              </div>
-
-              {/* Form */}
-              <form onSubmit={handleLoginSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-white/40 mb-1.5 select-none">Email Address</label>
-                  <input 
-                    type="email" 
-                    required
-                    placeholder="name@example.com" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-[#16181f] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:border-orange-500/40 focus:bg-[#1a1d26] transition-all outline-none"
-                  />
-                </div>
-
-                <div>
-                  <div className="flex justify-between items-center mb-1.5 select-none">
-                    <label className="block text-[11px] font-bold uppercase tracking-wider text-white/40">Password</label>
-                    <span className="text-[11px] text-orange-400 hover:text-orange-355 cursor-pointer transition-colors font-medium">Forgot password?</span>
-                  </div>
-                  <input 
-                    type="password" 
-                    required
-                    placeholder="••••••••" 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full bg-[#16181f] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:border-orange-500/40 focus:bg-[#1a1d26] transition-all outline-none"
-                  />
-                </div>
-
-                <button 
-                  type="submit"
-                  disabled={isLoggingIn}
-                  className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-black font-extrabold py-3.5 rounded-xl transition-all hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2 text-sm mt-6 shadow-lg shadow-orange-500/10 disabled:opacity-50"
-                >
-                  {isLoggingIn ? (
-                    <>
-                      <svg className="animate-spin h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      <span>Signing in...</span>
-                    </>
-                  ) : (
-                    <span>Sign In to Workspace</span>
-                  )}
-                </button>
-              </form>
-
-              {/* Divider */}
-              <div className="relative my-6 select-none">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-white/5" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-[#0d0e12] px-3 text-white/30 font-bold tracking-wider">Or continue with</span>
-                </div>
-              </div>
-
-              {/* Social Login Options */}
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { name: "Google", icon: <svg className="w-4 h-4" viewBox="0 0 24 24"><path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" /><path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" /><path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" /><path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" /></svg> },
-                  { name: "GitHub", icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.577.688.479C19.138 20.162 22 16.418 22 12c0-5.523-4.527-10-10-10z" /></svg> },
-                  { name: "Apple", icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.22.67-2.94 1.51-.62.71-1.16 1.85-1.01 2.96 1.12.09 2.27-.58 2.96-1.41z" /></svg> }
-                ].map((prov, i) => (
-                  <button 
-                    key={i}
-                    type="button"
-                    onClick={() => handleSocialLogin(prov.name)}
-                    className="flex items-center justify-center py-2.5 bg-[#16181f] border border-white/5 hover:border-white/15 rounded-xl transition-all hover:bg-[#1a1d26] focus:outline-none"
-                    title={`Sign in with ${prov.name}`}
-                  >
-                    {prov.icon}
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Oryn login modal removed */}
     </div>
   );
 }
