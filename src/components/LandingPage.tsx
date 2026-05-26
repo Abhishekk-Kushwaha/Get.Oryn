@@ -96,16 +96,12 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
   const faqs = [
     {
-      question: "Is Forge really free to start?",
+      question: "Is Oryn really free to start?",
       answer: "Yes, 100% free. No credit card required. The Hobby plan gives you up to 3 active goals, 10 habits, a daily planner, and 7 days of history — enough to build real momentum before deciding to upgrade."
     },
     {
-      question: "How does Forge compare to Notion, Todoist, or Habitica?",
-      answer: "Those are great tools for individual jobs. But context-switching between 3-4 apps kills your focus. Forge unites goals, habits, daily planning, and analytics in one distraction-free interface — so you stop managing tools and start managing your life."
-    },
-    {
-      question: "Can I use Forge on my phone?",
-      answer: "Absolutely. Forge is a progressive web app (PWA) that installs on your home screen and works offline. It's designed mobile-first. Native iOS and Android apps are in active development."
+      question: "How does Oryn compare to Notion, Todoist, or Habitica?",
+      answer: "Those are great tools for individual jobs. But context-switching between 3-4 apps kills your focus. Oryn unites goals, habits, daily planning, and analytics in one distraction-free interface — so you stop managing tools and start managing your life."
     },
     {
       question: "Is my data secure and private?",
@@ -116,13 +112,6 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       answer: "Yes, cancel with one click. No contracts, no hidden fees, no questions asked. Your data stays yours and your account reverts to the free Hobby plan."
     }
   ];
-
-  // SVG Logo component matching the F-checkmark exactly
-  const ForgeLogo = ({ className = "w-8 h-8" }: { className?: string }) => (
-    <svg viewBox="0 0 100 100" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg">
-      <path d="M30 20H74L62 32H42V42H62L52 52H42V58L50 66L68 48L76 56L50 82L30 62V20Z" />
-    </svg>
-  );
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 overflow-y-auto custom-scrollbar font-sans selection:bg-orange-500/30">
@@ -139,8 +128,8 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             className="fixed top-0 left-0 right-0 z-50 bg-[#07080a]/95 backdrop-blur-xl border-b border-white/5 px-4 py-2.5 flex items-center justify-between"
           >
             <div className="flex items-center gap-2 text-white">
-              <ForgeLogo className="w-5 h-5" />
-              <span className="font-bold text-sm hidden sm:block">Forge</span>
+              <img src="/logo.png" alt="Oryn Logo" className="w-5 h-5 object-contain" />
+              <span className="font-bold text-sm hidden sm:block">Oryn</span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-emerald-400 text-xs font-medium hidden sm:block">✦ Free plan available — no credit card</span>
@@ -331,13 +320,13 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-5">
               You don't lack motivation.<br/><span className="text-orange-500">You lack a system.</span>
             </h2>
-            <p className="text-slate-500 text-lg max-w-2xl mx-auto">Most people juggle 3-4 apps just to manage their day. Forge replaces them all with one fluid workspace.</p>
+            <p className="text-slate-500 text-lg max-w-2xl mx-auto">Most people juggle 3-4 apps just to manage their day. Oryn replaces them all with one fluid workspace.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Before */}
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-red-50/60 border border-red-200/50 rounded-3xl p-8">
-              <div className="text-red-500 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2"><X size={16}/> Without Forge</div>
+              <div className="text-red-500 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2"><X size={16}/> Without Oryn</div>
               <ul className="space-y-3">
                 {["Scattered across Notion, Todoist & spreadsheets","Forget habits after the first week","No visibility into long-term progress","Constant context-switching kills focus"].map((item,i)=>(
                   <li key={i} className="flex gap-3 text-slate-600 text-sm"><span className="text-red-400 mt-0.5 shrink-0">✗</span>{item}</li>
@@ -346,7 +335,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             </motion.div>
             {/* After */}
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-emerald-50/60 border border-emerald-200/50 rounded-3xl p-8">
-              <div className="text-emerald-600 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2"><CheckCircle2 size={16}/> With Forge</div>
+              <div className="text-emerald-600 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2"><CheckCircle2 size={16}/> With Oryn</div>
               <ul className="space-y-3">
                 {["One dashboard for goals, habits & daily tasks","Visual streaks that make consistency addictive","Heatmaps & charts show your real trajectory","Built-in Focus Mode eliminates distractions"].map((item,i)=>(
                   <li key={i} className="flex gap-3 text-slate-700 text-sm"><span className="text-emerald-500 mt-0.5 shrink-0">✓</span>{item}</li>
@@ -405,7 +394,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] group-hover:bg-purple-500/20 transition-colors" />
               <Zap className="w-10 h-10 text-purple-500 mb-6" strokeWidth={1.5} />
               <h3 className="text-2xl font-bold mb-3 text-slate-900">Focus Mode</h3>
-              <p className="text-slate-500 text-lg leading-relaxed mb-8 max-w-xl">Block distractions. Enter deep work. Forge logs every focus session automatically so you see exactly where your hours go.</p>
+              <p className="text-slate-500 text-lg leading-relaxed mb-8 max-w-xl">Block distractions. Enter deep work. Oryn logs every focus session automatically so you see exactly where your hours go.</p>
               <div className="flex flex-wrap gap-3">
                 <div className="flex items-center gap-2 text-purple-900 bg-purple-100 px-5 py-2.5 rounded-xl border border-purple-200 font-medium text-sm"><Zap size={16} className="text-purple-600" /> 25-min Deep Work</div>
                 <div className="flex items-center gap-2 text-slate-600 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200 text-sm"><BarChart3 size={16} className="text-slate-400" /> Auto-logged Sessions</div>
@@ -436,7 +425,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { quote: "Forge replaced Notion, Todoist, and my physical journal. I've completed more goals in 3 months than in the last 2 years combined.", author: "Sarah Jenkins", role: "Product Manager at Stripe", metric: "12 goals completed" },
+              { quote: "Oryn replaced Notion, Todoist, and my physical journal. I've completed more goals in 3 months than in the last 2 years combined.", author: "Sarah Jenkins", role: "Product Manager at Stripe", metric: "12 goals completed" },
               { quote: "The Focus Mode alone saved me 2+ hours daily. It's not a task manager — it's an operating system for ambitious people.", author: "David Martinez", role: "Senior Engineer at Google", metric: "2h+ saved daily" },
               { quote: "42-day streak and counting. The visual habit tracker makes consistency feel like a game I actually want to win.", author: "Elena Rostova", role: "Freelance Designer", metric: "42-day streak" }
             ].map((t, i) => (
@@ -564,7 +553,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             Your future self is <br className="hidden md:block"/>waiting. <span className="text-orange-400">Start today.</span>
           </h2>
           <p className="text-white/50 text-lg mb-10 max-w-xl mx-auto">
-            Every day without a system is a day your goals drift further. Forge gives you the framework in under 2 minutes.
+            Every day without a system is a day your goals drift further. Oryn gives you the framework in under 2 minutes.
           </p>
           <button onClick={() => setShowLoginModal(true)} className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-amber-500 text-black px-10 py-5 rounded-full font-bold text-lg hover:scale-[1.05] active:scale-95 transition-all shadow-xl shadow-orange-500/20">
             Start Building Habits Free <ArrowRight size={20} />
@@ -577,8 +566,8 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       <footer className="bg-[#040506] py-10 px-8 border-t border-white/5">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
           <div className="flex items-center gap-2">
-            <ForgeLogo className="w-4 h-4" />
-            <span>© {new Date().getFullYear()} Forge. All rights reserved.</span>
+            <img src="/logo.png" alt="Oryn Logo" className="w-4 h-4 object-contain" />
+            <span>© {new Date().getFullYear()} Oryn. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6">
             <span className="hover:text-white transition-colors cursor-pointer">Twitter</span>
