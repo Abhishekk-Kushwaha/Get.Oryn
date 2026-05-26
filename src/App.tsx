@@ -1,33 +1,18 @@
-import { useState, useEffect } from "react";
-import AppContent from "./AppContent";
+import { useState, lazy, Suspense } from "react";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
 import { LandingPage } from "./components/LandingPage";
+
+const AppContent = lazy(() => import("./AppContent"));
 
 export default function App() {
   const [showApp, setShowApp] = useState(false);
 
-  useEffect(() => {
-    const handleHashChange = () => {
-      setShowApp(window.location.hash === "#demo");
-    };
-
-    window.addEventListener("hashchange", handleHashChange);
-
-    // If initial load has #demo hash, enter the app
-    if (window.location.hash === "#demo") {
-      setShowApp(true);
-    }
-
-    return () => {
-      window.removeEventListener("hashchange", handleHashChange);
-    };
-  }, []);
-
   const handleEnterApp = () => {
-    window.location.hash = "demo";
+    setShowApp(true);
   };
 
   const handleExitApp = () => {
+    setShowApp(false);
     window.location.hash = "";
   };
 
@@ -37,7 +22,44 @@ export default function App() {
 
   return (
     <AppErrorBoundary>
-      <AppContent onExit={handleExitApp} />
+      <Suspense
+        fallback={
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100vh",
+              background: "#09090b",
+              color: "#a1a1aa",
+              fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            }}
+          >
+            <div style={{ textAlign: "center" }}>
+              <div
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  border: "3px solid #27272a",
+                  borderTopColor: "#fb923c",
+                  borderRadius: "50%",
+                  animation: "oryn-spin 1s linear infinite",
+                  margin: "0 auto 16px",
+                }}
+              />
+              <p style={{ fontSize: "14px", fontWeight: 500 }}>Loading Oryn...</p>
+              <style>{`
+                @keyframes oryn-spin {
+                  to { transform: rotate(360deg); }
+                }
+              `}</style>
+            </div>
+          </div>
+        }
+      >
+        <AppContent onExit={handleExitApp} />
+      </Suspense>
     </AppErrorBoundary>
   );
 }
+
