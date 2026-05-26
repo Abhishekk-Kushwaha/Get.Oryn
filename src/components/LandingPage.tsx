@@ -230,9 +230,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
         {/* Navigation */}
         <nav className="flex items-center justify-between p-6 px-8 md:px-12 z-20 select-none">
-          <div className="flex items-center gap-2 text-white cursor-pointer" onClick={() => setShowLoginModal(true)}>
-            <img src="/logo.png" alt="Oryn Logo" className="w-8 h-8 object-contain" />
-          </div>
+          <div />
           <button className="text-white hover:opacity-80 transition-opacity focus:outline-none" onClick={() => setShowLoginModal(true)}>
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="3" y1="12" x2="21" y2="12"></line>
