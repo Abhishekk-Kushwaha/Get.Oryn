@@ -14,7 +14,7 @@ export type ViewType =
   | "assign-tasks"
   | "habits";
 
-const VALID_VIEWS: ViewType[] = [
+export const VALID_VIEWS: ViewType[] = [
   "today",
   "dashboard",
   "account",

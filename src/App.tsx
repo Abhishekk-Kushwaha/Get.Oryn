@@ -1,11 +1,36 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
 import { LandingPage } from "./components/LandingPage";
+import { VALID_VIEWS } from "./hooks/useAppRouter";
 
 const AppContent = lazy(() => import("./AppContent"));
 
 export default function App() {
   const [showApp, setShowApp] = useState(false);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (!hash) {
+        setShowApp(false);
+      } else if (VALID_VIEWS.includes(hash as any)) {
+        setShowApp(true);
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    // Initial check: if loaded with a valid app view, show the app immediately.
+    // If not, show the landing page.
+    const initialHash = window.location.hash.replace("#", "");
+    if (VALID_VIEWS.includes(initialHash as any)) {
+      setShowApp(true);
+    }
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
 
   const handleEnterApp = () => {
     setShowApp(true);
