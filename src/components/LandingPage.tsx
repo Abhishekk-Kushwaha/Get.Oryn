@@ -146,6 +146,19 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               opacity: 0;
             }
           }
+          @keyframes gradient-shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          @keyframes pulse-glow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.15); }
+          }
+          @keyframes float-up {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+          }
           .twinkle-dot {
             position: absolute;
             border-radius: 50%;
@@ -173,6 +186,17 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             background: white;
             border-radius: 50%;
             box-shadow: 0 0 6px 1.5px white, 0 0 12px 3px rgba(255, 255, 255, 0.4);
+          }
+          .gradient-text-shimmer {
+            background: linear-gradient(90deg, #f97316, #fbbf24, #f97316, #fbbf24);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shimmer 4s ease-in-out infinite;
+          }
+          .hero-glow {
+            animation: pulse-glow 5s ease-in-out infinite;
           }
         `}} />
 
@@ -226,28 +250,50 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
         </main>
 
         {/* Bottom Logo, Branding & Tagline */}
-        <div className="flex flex-col items-center z-20 pb-12 md:pb-16 px-4">
+        <div className="flex flex-col items-center z-20 pb-12 md:pb-16 px-4 relative">
+          {/* Radial glow behind branding */}
+          <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[420px] h-[220px] rounded-full bg-gradient-to-b from-orange-500/15 via-amber-500/8 to-transparent blur-[80px] hero-glow pointer-events-none" />
+
           <motion.div 
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col items-center text-center"
+            className="flex flex-col items-center text-center relative"
           >
             {/* App Title */}
-            <h1 
+            <motion.h1 
               onClick={onEnter}
-              className="text-4xl md:text-[44px] font-bold tracking-tight mb-5 text-white cursor-pointer hover:opacity-90 select-none"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, delay: 0.3, type: "spring", stiffness: 100 }}
+              className="text-4xl md:text-[44px] font-bold tracking-tight mb-4 text-white cursor-pointer select-none drop-shadow-[0_0_35px_rgba(249,115,22,0.15)] hover:drop-shadow-[0_0_45px_rgba(249,115,22,0.25)] transition-all duration-500"
             >
               Oryn
-            </h1>
+            </motion.h1>
+
+            {/* Decorative separator */}
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex items-center gap-3 mb-5"
+            >
+              <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-white/30" />
+              <div className="w-1.5 h-1.5 rotate-45 bg-orange-400/70 shadow-[0_0_8px_rgba(249,115,22,0.5)]" />
+              <div className="w-8 h-[1px] bg-gradient-to-l from-transparent to-white/30" />
+            </motion.div>
 
             {/* Tagline */}
-            <p 
+            <motion.p 
               onClick={onEnter}
-              className="text-lg text-white/60 font-light tracking-wide max-w-md px-4 cursor-pointer select-none"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.6 }}
+              className="text-lg md:text-xl text-white/50 font-light tracking-[0.15em] uppercase max-w-md px-4 cursor-pointer select-none"
             >
-              Set goals. Track progress. <strong className="text-white font-semibold">Own</strong> yourself.
-            </p>
+              your consistency partner.
+              <span className="gradient-text-shimmer font-semibold ml-1.5">every day</span>
+            </motion.p>
           </motion.div>
         </div>
       </div>

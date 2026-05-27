@@ -53,11 +53,11 @@ export function useAppRouter() {
   useEffect(() => {
     const currentHash = window.location.hash.replace("#", "");
     if (currentHash !== view) {
-      if (window.history.state?.modal) {
-        window.history.replaceState(null, "", `#${view}`);
-      } else {
-        window.history.pushState(null, "", `#${view}`);
-      }
+      window.history.replaceState(
+        window.history.state?.modal ? null : { orynDemoEntry: true },
+        "",
+        `#${view}`,
+      );
     }
   }, [view]);
 

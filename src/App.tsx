@@ -1,25 +1,19 @@
-import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
 import { LandingPage } from "./components/LandingPage";
-import { VALID_VIEWS } from "./hooks/useAppRouter";
+import { VALID_VIEWS, type ViewType } from "./hooks/useAppRouter";
 
 const AppContent = lazy(() => import("./AppContent"));
 
 export default function App() {
   const [showApp, setShowApp] = useState(false);
-  const isExitingRef = useRef(false);
 
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace("#", "");
       if (!hash) {
-        if (isExitingRef.current) {
-          setShowApp(false);
-          isExitingRef.current = false;
-        } else {
-          window.location.hash = "today";
-        }
-      } else if (VALID_VIEWS.includes(hash as any)) {
+        setShowApp(false);
+      } else if (VALID_VIEWS.includes(hash as ViewType)) {
         setShowApp(true);
       }
     };
@@ -27,9 +21,16 @@ export default function App() {
     window.addEventListener("hashchange", handleHashChange);
 
     // Initial check: if loaded with a valid app view, show the app immediately.
-    // If not, show the landing page.
+    // Seed a landing-page history entry so Back exits the demo instead of
+    // closing a direct app link.
     const initialHash = window.location.hash.replace("#", "");
-    if (VALID_VIEWS.includes(initialHash as any)) {
+    if (VALID_VIEWS.includes(initialHash as ViewType)) {
+      if (!window.history.state?.orynDemoEntry) {
+        const landingUrl = `${window.location.pathname}${window.location.search}`;
+        const appUrl = `${landingUrl}#${initialHash}`;
+        window.history.replaceState({ orynLandingEntry: true }, "", landingUrl);
+        window.history.pushState({ orynDemoEntry: true }, "", appUrl);
+      }
       setShowApp(true);
     }
 
@@ -39,14 +40,18 @@ export default function App() {
   }, []);
 
   const handleEnterApp = () => {
+    const landingUrl = `${window.location.pathname}${window.location.search}`;
     setShowApp(true);
-    window.location.hash = "today";
+    window.history.pushState({ orynDemoEntry: true }, "", `${landingUrl}#today`);
   };
 
   const handleExitApp = () => {
-    isExitingRef.current = true;
     setShowApp(false);
-    window.location.hash = "";
+    window.history.replaceState(
+      { orynLandingEntry: true },
+      "",
+      `${window.location.pathname}${window.location.search}`,
+    );
   };
 
   if (!showApp) {
@@ -95,4 +100,3 @@ export default function App() {
     </AppErrorBoundary>
   );
 }
-
