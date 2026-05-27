@@ -120,7 +120,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
   const paperShadowOpacity = Math.min(paperProgress * 1.5, 1);
 
   return (
-    <div className="min-h-screen bg-[#000000] text-slate-900 overflow-y-auto overflow-x-hidden custom-scrollbar font-sans selection:bg-orange-500/30">
+    <div className="min-h-screen bg-[#000000] text-slate-900 overflow-y-auto custom-scrollbar font-sans selection:bg-orange-500/30">
       <ScrollOverflowHandler />
       
       {/* ═══════════ STICKY CTA BAR ═══════════ */}
@@ -148,7 +148,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </AnimatePresence>
 
       {/* ═══════════ HERO SECTION (exactly matching screenshot) ═══════════ */}
-      <div ref={heroRef} className="fixed top-0 left-0 right-0 z-0 w-full flex flex-col min-h-screen bg-[#000000] text-white overflow-hidden pb-16 md:pb-24 pointer-events-none">
+      <div ref={heroRef} className="sticky top-0 z-0 w-full flex flex-col min-h-screen bg-[#000000] text-white overflow-hidden pb-16 md:pb-24">
         {/* Style block for twinkling and falling/shooting star animations */}
         <style dangerouslySetInnerHTML={{__html: `
           @keyframes twinkle-star {
@@ -267,7 +267,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="w-full flex justify-center cursor-pointer pointer-events-auto"
+            className="w-full flex justify-center cursor-pointer"
             onClick={onEnter}
           >
             <img 
@@ -288,7 +288,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col items-center text-center relative pointer-events-auto"
+            className="flex flex-col items-center text-center relative"
           >
             {/* App Title */}
             <motion.h1 
@@ -327,9 +327,6 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
           </motion.div>
         </div>
       </div>
-
-      {/* ═══════════ HERO SPACER (pushes content below the fixed hero) ═══════════ */}
-      <div className="relative pointer-events-none z-0" style={{ height: '100vh' }} />
 
       {/* ═══════════ LIGHT CONTENT PAPER OVERLAY ═══════════ */}
       <div
