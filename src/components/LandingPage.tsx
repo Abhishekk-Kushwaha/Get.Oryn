@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useInView } from "motion/react";
 import { 
   ArrowRight, Target, Activity, CalendarDays, LayoutDashboard, 
@@ -32,6 +32,33 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isAnnual, setIsAnnual] = useState(true);
   const [showStickyBar, setShowStickyBar] = useState(false);
+
+  // ─── Scroll-driven paper curl animation ───────────────────────
+  const paperRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [paperProgress, setPaperProgress] = useState(0); // 0 = paper not visible, 1 = fully arrived
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!heroRef.current) return;
+      const heroHeight = heroRef.current.offsetHeight;
+      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      // How far past the hero bottom the user has scrolled (0 to 1)
+      // Start the animation when user has scrolled 60% of hero, complete when hero is fully scrolled past
+      const start = heroHeight * 0.5;
+      const end = heroHeight * 1.0;
+      const progress = Math.max(0, Math.min(1, (scrollY - start) / (end - start)));
+      setPaperProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('scroll', handleScroll, { passive: true, capture: true });
+    handleScroll(); // initial
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('scroll', handleScroll, { capture: true });
+    };
+  }, []);
 
   // Generate random twinkling stars for the background
   const backgroundStars = React.useMemo(() => {
@@ -89,8 +116,11 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
     }
   ];
 
+  // Paper shadow calculation — intensifies as paper covers the hero
+  const paperShadowOpacity = Math.min(paperProgress * 1.5, 1);
+
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 overflow-y-auto custom-scrollbar font-sans selection:bg-orange-500/30">
+    <div className="min-h-screen bg-[#000000] text-slate-900 overflow-y-auto overflow-x-hidden custom-scrollbar font-sans selection:bg-orange-500/30">
       <ScrollOverflowHandler />
       
       {/* ═══════════ STICKY CTA BAR ═══════════ */}
@@ -118,7 +148,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </AnimatePresence>
 
       {/* ═══════════ HERO SECTION (exactly matching screenshot) ═══════════ */}
-      <div className="relative w-full flex flex-col min-h-screen bg-[#000000] text-white overflow-hidden pb-16 md:pb-24">
+      <div ref={heroRef} className="fixed top-0 left-0 right-0 z-0 w-full flex flex-col min-h-screen bg-[#000000] text-white overflow-hidden pb-16 md:pb-24">
         {/* Style block for twinkling and falling/shooting star animations */}
         <style dangerouslySetInnerHTML={{__html: `
           @keyframes twinkle-star {
@@ -297,6 +327,28 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
           </motion.div>
         </div>
       </div>
+
+      {/* ═══════════ HERO SPACER (pushes content below the fixed hero) ═══════════ */}
+      <div className="relative z-0" style={{ height: '100vh' }} />
+
+      {/* ═══════════ LIGHT CONTENT PAPER OVERLAY ═══════════ */}
+      <div
+        ref={paperRef}
+        className="relative z-10"
+      >
+        {/* The paper surface */}
+        <div
+          className="relative bg-slate-50"
+          style={{
+            boxShadow: `
+              0 -6px 30px rgba(0,0,0,${0.35 * paperShadowOpacity}),
+              0 -20px 70px rgba(0,0,0,${0.25 * paperShadowOpacity}),
+              0 -1px 3px rgba(0,0,0,${0.5 * paperShadowOpacity})
+            `,
+          }}
+        >
+          {/* Top edge line — subtle light catch */}
+          <div className="absolute top-0 left-0 right-0 h-[1px] z-20 pointer-events-none bg-white/40" />
 
       {/* ═══════════ SOCIAL PROOF BAR ═══════════ */}
       <div className="bg-white border-b border-slate-100 py-6">
@@ -582,6 +634,9 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
       {/* ═══════════ ORYN LOGIN MODAL ═══════════ */}
       {/* Oryn login modal removed */}
+
+        </div>{/* end paper surface */}
+      </div>{/* end light content paper overlay */}
     </div>
   );
 }
