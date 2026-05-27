@@ -329,7 +329,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </div>
 
       {/* ═══════════ HERO SPACER (pushes content below the fixed hero) ═══════════ */}
-      <div className="relative z-0" style={{ height: '100vh' }} />
+      <div className="relative pointer-events-none z-0" style={{ height: '100vh' }} />
 
       {/* ═══════════ LIGHT CONTENT PAPER OVERLAY ═══════════ */}
       <div
