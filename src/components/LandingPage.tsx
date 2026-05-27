@@ -148,7 +148,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </AnimatePresence>
 
       {/* ═══════════ HERO SECTION (exactly matching screenshot) ═══════════ */}
-      <div ref={heroRef} className="fixed top-0 left-0 right-0 z-0 w-full flex flex-col min-h-screen bg-[#000000] text-white overflow-hidden pb-16 md:pb-24">
+      <div ref={heroRef} className="fixed top-0 left-0 right-0 z-0 w-full flex flex-col min-h-screen bg-[#000000] text-white overflow-hidden pb-16 md:pb-24 pointer-events-none">
         {/* Style block for twinkling and falling/shooting star animations */}
         <style dangerouslySetInnerHTML={{__html: `
           @keyframes twinkle-star {
@@ -267,7 +267,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="w-full flex justify-center cursor-pointer"
+            className="w-full flex justify-center cursor-pointer pointer-events-auto"
             onClick={onEnter}
           >
             <img 
@@ -288,7 +288,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col items-center text-center relative"
+            className="flex flex-col items-center text-center relative pointer-events-auto"
           >
             {/* App Title */}
             <motion.h1 
