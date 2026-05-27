@@ -25,8 +25,6 @@ export { isCompletedOnDate, isDueOnDate } from "./lib/storageLogic";
 
 import { getMockData } from "./lib/mockData";
 
-const DATA_KEY = "goalforge_data_v3";
-
 interface LocalData {
   goals: GoalRecord[];
   milestones: MilestoneRecord[];
@@ -34,9 +32,10 @@ interface LocalData {
   categories: Category[];
 }
 
+let inMemoryData: LocalData | null = null;
+
 function getLocalData(): LocalData {
-  const data = localStorage.getItem(DATA_KEY);
-  if (!data) {
+  if (!inMemoryData) {
     const mock = getMockData();
     // Pre-calculate initially
     mock.goals.forEach(goal => {
@@ -45,21 +44,13 @@ function getLocalData(): LocalData {
       updateGoalProgressInPlace(mapped);
       goal.progress = mapped.progress;
     });
-    localStorage.setItem(DATA_KEY, JSON.stringify(mock));
-    return mock;
+    inMemoryData = mock;
   }
-  try {
-    return JSON.parse(data) as LocalData;
-  } catch (e) {
-    console.error("Local data is corrupted. Resetting.");
-    const mock = getMockData();
-    localStorage.setItem(DATA_KEY, JSON.stringify(mock));
-    return mock;
-  }
+  return inMemoryData;
 }
 
 function saveLocalData(data: LocalData) {
-  localStorage.setItem(DATA_KEY, JSON.stringify(data));
+  inMemoryData = data;
 }
 
 export const storage = {

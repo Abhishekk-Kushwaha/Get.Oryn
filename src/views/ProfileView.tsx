@@ -582,11 +582,44 @@ export function ProfileView(props: ProfileViewProps) {
     return yearDays.map((day) => {
       const normalizedDay = startOfDay(day);
       const items = getHistoricalItemsForDate(normalizedDay);
-      const completed = items.filter((item) => item.done).length;
-      const total = items.length;
-      const progress = total === 0 ? 0 : Math.round((completed / total) * 100);
-      const isBeforeSignup = normalizedDay.getTime() < signupStart.getTime();
+      let completed = items.filter((item) => item.done).length;
+      let total = items.length;
+      let progress = total === 0 ? 0 : Math.round((completed / total) * 100);
+      let hasWork = total > 0;
       const isFuture = normalizedDay.getTime() > todayStart.getTime();
+
+      let isBeforeSignup = normalizedDay.getTime() < signupStart.getTime();
+      if (!isFuture) {
+        // Treat past days as after signup for the demo so they are not muted
+        isBeforeSignup = false;
+
+        if (total === 0) {
+          const dateStr = format(normalizedDay, "yyyy-MM-dd");
+          let hash = 0;
+          for (let i = 0; i < dateStr.length; i++) {
+            hash = dateStr.charCodeAt(i) + ((hash << 5) - hash);
+          }
+          const rand = Math.abs(Math.sin(hash));
+
+          // 75% of past days have tasks scheduled
+          if (rand > 0.25) {
+            hasWork = true;
+            // Number of tasks: 1 to 4
+            total = Math.floor(rand * 4) + 1;
+            // Completion rate based on rand
+            if (rand > 0.75) {
+              completed = total;
+            } else if (rand > 0.5) {
+              completed = Math.ceil(total * 0.75);
+            } else if (rand > 0.35) {
+              completed = Math.ceil(total * 0.5);
+            } else {
+              completed = Math.floor(total * 0.25);
+            }
+            progress = Math.round((completed / total) * 100);
+          }
+        }
+      }
 
       return {
         date: normalizedDay,
@@ -594,7 +627,7 @@ export function ProfileView(props: ProfileViewProps) {
         completed,
         total,
         progress,
-        hasWork: total > 0,
+        hasWork,
         isBeforeSignup,
         isFuture,
       };

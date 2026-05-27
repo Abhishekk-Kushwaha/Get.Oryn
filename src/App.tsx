@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
 import { LandingPage } from "./components/LandingPage";
 import { VALID_VIEWS } from "./hooks/useAppRouter";
@@ -7,12 +7,18 @@ const AppContent = lazy(() => import("./AppContent"));
 
 export default function App() {
   const [showApp, setShowApp] = useState(false);
+  const isExitingRef = useRef(false);
 
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace("#", "");
       if (!hash) {
-        setShowApp(false);
+        if (isExitingRef.current) {
+          setShowApp(false);
+          isExitingRef.current = false;
+        } else {
+          window.location.hash = "today";
+        }
       } else if (VALID_VIEWS.includes(hash as any)) {
         setShowApp(true);
       }
@@ -34,9 +40,11 @@ export default function App() {
 
   const handleEnterApp = () => {
     setShowApp(true);
+    window.location.hash = "today";
   };
 
   const handleExitApp = () => {
+    isExitingRef.current = true;
     setShowApp(false);
     window.location.hash = "";
   };
