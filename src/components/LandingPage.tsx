@@ -120,7 +120,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
   const paperShadowOpacity = Math.min(paperProgress * 1.5, 1);
 
   return (
-    <div className="min-h-screen bg-[#000000] text-slate-900 overflow-y-auto custom-scrollbar font-sans selection:bg-orange-500/30">
+    <div className="min-h-screen bg-[#000000] text-slate-900 overflow-y-auto overflow-x-hidden custom-scrollbar font-sans selection:bg-orange-500/30">
       <ScrollOverflowHandler />
       
       {/* ═══════════ STICKY CTA BAR ═══════════ */}
@@ -148,7 +148,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </AnimatePresence>
 
       {/* ═══════════ HERO SECTION (exactly matching screenshot) ═══════════ */}
-      <div ref={heroRef} className="sticky top-0 z-0 w-full flex flex-col min-h-screen bg-[#000000] text-white overflow-hidden pb-16 md:pb-24">
+      <div ref={heroRef} className="fixed top-0 left-0 right-0 z-0 w-full flex flex-col min-h-screen bg-[#000000] text-white overflow-hidden pb-16 md:pb-24">
         {/* Style block for twinkling and falling/shooting star animations */}
         <style dangerouslySetInnerHTML={{__html: `
           @keyframes twinkle-star {
@@ -267,15 +267,18 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="w-full flex justify-center cursor-pointer"
-            onClick={onEnter}
+            className="w-full flex justify-center relative"
           >
-            <img 
-              src="/Hero.jpeg" 
-              alt="Oryn App Mockups" 
-              className="w-full max-w-[340px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[580px] h-auto object-contain select-none transition-transform duration-500 hover:scale-[1.01]"
-              draggable={false}
-            />
+            <div className="relative group cursor-pointer" onClick={onEnter}>
+              <img 
+                src="/Hero.jpeg" 
+                alt="Oryn App Mockups" 
+                className="w-full max-w-[340px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[580px] h-auto object-contain select-none transition-transform duration-500 group-hover:scale-[1.01]"
+                draggable={false}
+              />
+              {/* This inner div ensures we have a dedicated interactive area over the mockup */}
+              <div className="absolute inset-0 z-10 rounded-[2rem]"></div>
+            </div>
           </motion.div>
         </main>
 
@@ -292,11 +295,10 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
           >
             {/* App Title */}
             <motion.h1 
-              onClick={onEnter}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.9, delay: 0.3, type: "spring", stiffness: 100 }}
-              className="text-4xl md:text-[44px] font-bold tracking-tight mb-4 text-white cursor-pointer select-none drop-shadow-[0_0_35px_rgba(249,115,22,0.15)] hover:drop-shadow-[0_0_45px_rgba(249,115,22,0.25)] transition-all duration-500"
+              className="text-4xl md:text-[44px] font-bold tracking-tight mb-4 text-white select-none drop-shadow-[0_0_35px_rgba(249,115,22,0.15)] hover:drop-shadow-[0_0_45px_rgba(249,115,22,0.25)] transition-all duration-500"
             >
               Oryn
             </motion.h1>
@@ -315,11 +317,10 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
             {/* Tagline */}
             <motion.p 
-              onClick={onEnter}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.6 }}
-              className="text-lg md:text-xl text-white/50 font-light tracking-[0.15em] uppercase max-w-md px-4 cursor-pointer select-none"
+              className="text-lg md:text-xl text-white/50 font-light tracking-[0.15em] uppercase max-w-md px-4 select-none"
             >
               your consistency partner.
               <span className="gradient-text-shimmer font-semibold ml-1.5">every day</span>
@@ -327,6 +328,9 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
           </motion.div>
         </div>
       </div>
+
+      {/* ═══════════ HERO SPACER (pushes content below the fixed hero) ═══════════ */}
+      <div className="relative z-0" style={{ height: '100vh' }} />
 
       {/* ═══════════ LIGHT CONTENT PAPER OVERLAY ═══════════ */}
       <div
