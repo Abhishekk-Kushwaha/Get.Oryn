@@ -794,19 +794,19 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </div>
 
       {/* ═══════════ FINAL CTA ═══════════ */}
-      <div className="bg-[#07080a] text-white py-24 md:py-32 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-orange-500/5 blur-[100px] pointer-events-none" />
+      <div className="bg-white text-slate-900 py-24 md:py-32 text-center relative overflow-hidden border-t border-slate-200">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-orange-500/[0.03] blur-[100px] pointer-events-none" />
         <div className="max-w-3xl mx-auto px-6 relative z-10">
-          <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
-            Your future self is <br className="hidden md:block"/>waiting. <span className="text-orange-400">Start today.</span>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-6 text-slate-900">
+            Your future self is <br className="hidden md:block"/>waiting. <span className="text-orange-600">Start today.</span>
           </h2>
-          <p className="text-white/50 text-lg mb-10 max-w-xl mx-auto">
+          <p className="text-slate-500 text-lg mb-10 max-w-xl mx-auto">
             Every day without a system is a day your goals drift further. Oryn gives you the framework in under 2 minutes.
           </p>
-          <button onClick={onEnter} className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-amber-500 text-black px-10 py-5 rounded-full font-bold text-lg hover:scale-[1.05] active:scale-95 transition-all shadow-xl shadow-orange-500/20">
+          <button onClick={onEnter} className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white px-10 py-5 rounded-full font-bold text-lg hover:scale-[1.05] active:scale-95 transition-all shadow-xl shadow-orange-500/25">
             Try Demo <ArrowRight size={20} />
           </button>
-          <div className="mt-4 text-white/30 text-xs">Free forever on the Hobby plan. No credit card needed.</div>
+          <div className="mt-4 text-slate-400 text-xs">Free forever on the Hobby plan. No credit card needed.</div>
         </div>
       </div>
 
