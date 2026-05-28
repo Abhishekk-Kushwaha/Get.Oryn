@@ -410,14 +410,14 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
           </motion.div>
 
           {/* ── Layer 2: Horizontal Transformation Cards with Visuals ── */}
-          <div className="flex gap-4 md:gap-5 overflow-x-auto overflow-y-hidden touch-pan-x pb-4 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 lg:mx-0 lg:px-0">
+          <div className="flex gap-4 md:gap-5 overflow-x-auto overflow-y-hidden pb-4 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 lg:mx-0 lg:px-0">
 
             {/* ── Card 1: Today View ── */}
             <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1, duration: 0.5 }}
               className="relative rounded-[24px] overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
               <div className="bg-slate-800 px-5 py-4">
                 <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
-                <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Woke up, no clue what to do</p>
+                <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Woke up, no clue what to do today</p>
                 <div className="flex flex-col gap-2 mt-4 opacity-50">
                   <div className="flex items-center gap-2.5"><div className="w-4 h-4 rounded border border-white/20" /><div className="h-2.5 w-24 rounded bg-white/12" /><div className="ml-auto text-[10px] text-red-400/70 font-bold">overdue</div></div>
                   <div className="flex items-center gap-2.5"><div className="w-4 h-4 rounded border border-white/20" /><div className="h-2.5 w-16 rounded bg-white/12" /><div className="ml-auto text-[10px] text-red-400/70 font-bold">missed</div></div>
