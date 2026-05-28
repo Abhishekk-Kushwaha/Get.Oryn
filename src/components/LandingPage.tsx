@@ -653,7 +653,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
 
       {/* ═══════════ MID-PAGE CTA ═══════════ */}
-      <div className="bg-[#07080a] py-16 text-center relative overflow-hidden">
+      <div className="bg-[#000000] py-16 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-amber-500/5" />
         <div className="relative z-10 max-w-2xl mx-auto px-6">
           <h3 className="text-2xl md:text-3xl font-black text-white mb-4">Stop planning to plan. Start building.</h3>
@@ -794,7 +794,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </div>
 
       {/* ═══════════ FINAL CTA ═══════════ */}
-      <div className="bg-[#07080a] text-white py-24 md:py-32 text-center relative overflow-hidden">
+      <div className="bg-[#000000] text-white py-24 md:py-32 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-orange-500/5 blur-[100px] pointer-events-none" />
         <div className="max-w-3xl mx-auto px-6 relative z-10">
           <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
@@ -811,7 +811,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </div>
 
       {/* ═══════════ FOOTER ═══════════ */}
-      <footer className="bg-[#040506] py-10 px-8 border-t border-white/5">
+      <footer className="bg-[#000000] py-10 px-8 border-t border-white/5">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
           <div className="flex items-center gap-2">
             <img src="/logo.png" alt="Oryn Logo" className="w-4 h-4 object-contain" />
