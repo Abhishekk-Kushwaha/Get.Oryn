@@ -31,7 +31,6 @@ function useCountUp(end: number, duration = 2000, startOnView = true) {
 export function LandingPage({ onEnter }: { onEnter: () => void }) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isAnnual, setIsAnnual] = useState(true);
-  const [showStickyBar, setShowStickyBar] = useState(false);
 
   // ─── Scroll-driven paper curl animation ───────────────────────
   const paperRef = useRef<HTMLDivElement>(null);
@@ -80,22 +79,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
   const stat2 = useCountUp(94);
   const stat3 = useCountUp(42);
 
-  // Sticky bar appears after scrolling past hero
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop || document.getElementById("root")?.scrollTop || 0;
-      setShowStickyBar(scrollY > 800);
-    };
-    
-    window.addEventListener("scroll", handleScroll, true);
-    const rootEl = document.getElementById("root");
-    if (rootEl) rootEl.addEventListener("scroll", handleScroll, true);
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll, true);
-      if (rootEl) rootEl.removeEventListener("scroll", handleScroll, true);
-    };
-  }, []);
+
 
   const faqs = [
     {
@@ -123,29 +107,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
     <div className="min-h-screen bg-[#000000] text-slate-900 overflow-y-auto overflow-x-hidden custom-scrollbar font-sans selection:bg-orange-500/30">
       <ScrollOverflowHandler />
       
-      {/* ═══════════ STICKY CTA BAR ═══════════ */}
-      <AnimatePresence>
-        {showStickyBar && (
-          <motion.div 
-            initial={{ y: -60, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -60, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed top-0 left-0 right-0 z-50 bg-[#07080a]/95 backdrop-blur-xl border-b border-white/5 px-4 py-2.5 flex items-center justify-between"
-          >
-            <div className="flex items-center gap-2 text-white">
-              <img src="/logo.png" alt="Oryn Logo" className="w-5 h-5 object-contain" />
-              <span className="font-bold text-sm hidden sm:block">Oryn</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-emerald-400 text-xs font-medium hidden sm:block">✦ Free plan available — no credit card</span>
-              <button onClick={onEnter} className="px-4 py-1.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold rounded-full transition-all hover:scale-[1.03] active:scale-95">
-                Try Demo →
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
 
       {/* ═══════════ HERO SECTION (exactly matching screenshot) ═══════════ */}
       <div ref={heroRef} className="fixed top-0 left-0 right-0 z-0 w-full flex flex-col min-h-screen bg-[#000000] text-white overflow-hidden pb-16 md:pb-24">
