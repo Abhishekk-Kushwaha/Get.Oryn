@@ -166,6 +166,72 @@ export function getMockData(): LocalData {
         done: false,
         created_at: new Date(now.getTime() - 86400000 * 80).toISOString(),
     },
+    // New Unassigned Milestones for Goal 1 (Launch MVP Project)
+    {
+        id: crypto.randomUUID(),
+        goal_id: goalId1,
+        title: "Write API Documentation",
+        done: false,
+        created_at: new Date(now.getTime() - 86400000 * 5).toISOString(),
+    },
+    {
+        id: crypto.randomUUID(),
+        goal_id: goalId1,
+        title: "Create Landing Page Content",
+        done: false,
+        created_at: new Date(now.getTime() - 86400000 * 5).toISOString(),
+    },
+    {
+        id: crypto.randomUUID(),
+        goal_id: goalId1,
+        title: "Perform User Testing",
+        done: false,
+        created_at: new Date(now.getTime() - 86400000 * 5).toISOString(),
+    },
+    // New Unassigned Milestones for Goal 2 (Run a Half Marathon)
+    {
+        id: crypto.randomUUID(),
+        goal_id: goalId2,
+        title: "Buy new running shoes",
+        done: false,
+        created_at: new Date(now.getTime() - 86400000 * 10).toISOString(),
+    },
+    {
+        id: crypto.randomUUID(),
+        goal_id: goalId2,
+        title: "Plan race day nutrition",
+        done: false,
+        created_at: new Date(now.getTime() - 86400000 * 10).toISOString(),
+    },
+    {
+        id: crypto.randomUUID(),
+        goal_id: goalId2,
+        title: "Run 18k long run",
+        done: false,
+        created_at: new Date(now.getTime() - 86400000 * 10).toISOString(),
+    },
+    // New Unassigned Milestones for Goal 3 (Read 12 Books)
+    {
+        id: crypto.randomUUID(),
+        goal_id: goalId3,
+        title: "Read 'Designing Data-Intensive Applications'",
+        done: false,
+        created_at: new Date(now.getTime() - 86400000 * 15).toISOString(),
+    },
+    {
+        id: crypto.randomUUID(),
+        goal_id: goalId3,
+        title: "Read 'Thinking, Fast and Slow'",
+        done: false,
+        created_at: new Date(now.getTime() - 86400000 * 15).toISOString(),
+    },
+    {
+        id: crypto.randomUUID(),
+        goal_id: goalId3,
+        title: "Read 'The Pragmatic Programmer'",
+        done: false,
+        created_at: new Date(now.getTime() - 86400000 * 15).toISOString(),
+    }
   ];
 
   const habits: HabitRecord[] = [
