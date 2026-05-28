@@ -120,6 +120,14 @@ export function CalendarView(props: CalendarViewProps) {
     activeCalendarMilestone,
   } = props;
 
+  const [hasClickedAssign, setHasClickedAssign] = React.useState(() => {
+    try {
+      return localStorage.getItem("oryn_assign_tasks_clicked") === "true";
+    } catch {
+      return false;
+    }
+  });
+
   const calendarDays = React.useMemo(() => {
     const monthStart = startOfMonth(currentMonth);
     return eachDayOfInterval({
@@ -204,8 +212,19 @@ export function CalendarView(props: CalendarViewProps) {
           <div className="flex items-center gap-3">
             {/* Assign tasks button */}
             <button
-              onClick={() => setView("assign-tasks")}
-              className="flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-orange-500/30 bg-orange-500/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-orange-400 shadow-[0_0_15px_rgba(249,115,22,0.15)] transition-all hover:bg-orange-500/30 hover:border-orange-500/40"
+              onClick={() => {
+                try {
+                  localStorage.setItem("oryn_assign_tasks_clicked", "true");
+                } catch (e) {
+                  console.warn(e);
+                }
+                setHasClickedAssign(true);
+                setView("assign-tasks");
+              }}
+              className={cn(
+                "flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-orange-500/30 bg-orange-500/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-orange-400 shadow-[0_0_15px_rgba(249,115,22,0.15)] transition-all hover:bg-orange-500/30 hover:border-orange-500/40",
+                !hasClickedAssign && "animate-assign-tasks-pulse"
+              )}
             >
               <Plus className="h-3 w-3" />
               Assign Tasks

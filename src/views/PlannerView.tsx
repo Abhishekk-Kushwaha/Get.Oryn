@@ -247,6 +247,13 @@ export function PlannerView({
   const [baseDate, setBaseDate] = useState(startOfDay(new Date()));
   const [selectedDate, setSelectedDate] = useState(startOfDay(new Date()));
   const [addingTaskForDate, setAddingTaskForDate] = useState<string | null>(null);
+  const [hasClickedAssign, setHasClickedAssign] = useState(() => {
+    try {
+      return localStorage.getItem("oryn_assign_tasks_clicked") === "true";
+    } catch {
+      return false;
+    }
+  });
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskRepeat, setNewTaskRepeat] = useState<PlannerRepeat>("None");
   const [isRepeatMenuOpen, setIsRepeatMenuOpen] = useState(false);
@@ -415,8 +422,19 @@ export function PlannerView({
                 </div>
 
                 <button
-                  onClick={() => setView("assign-tasks")}
-                  className="ml-auto flex shrink-0 items-center gap-1 rounded-lg border border-orange-500/30 bg-orange-500/20 px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-[0.12em] text-orange-400 shadow-[0_0_15px_rgba(249,115,22,0.15)] transition-all hover:bg-orange-500/30 hover:border-orange-500/40 md:ml-2 md:gap-1.5 md:px-3 md:text-[10px] md:tracking-wider md:whitespace-nowrap"
+                  onClick={() => {
+                    try {
+                      localStorage.setItem("oryn_assign_tasks_clicked", "true");
+                    } catch (e) {
+                      console.warn(e);
+                    }
+                    setHasClickedAssign(true);
+                    setView("assign-tasks");
+                  }}
+                  className={cn(
+                    "ml-auto flex shrink-0 items-center gap-1 rounded-lg border border-orange-500/30 bg-orange-500/20 px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-[0.12em] text-orange-400 shadow-[0_0_15px_rgba(249,115,22,0.15)] transition-all hover:bg-orange-500/30 hover:border-orange-500/40 md:ml-2 md:gap-1.5 md:px-3 md:text-[10px] md:tracking-wider md:whitespace-nowrap",
+                    !hasClickedAssign && "animate-assign-tasks-pulse"
+                  )}
                 >
                   <Plus className="h-3 w-3" />
                   Assign Tasks
