@@ -410,7 +410,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
           </motion.div>
 
           {/* ── Layer 2: Horizontal Transformation Cards with Visuals ── */}
-          <div className="flex gap-4 md:gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 lg:mx-0 lg:px-0">
+          <div className="flex gap-4 md:gap-5 overflow-x-auto overflow-y-hidden touch-pan-x pb-4 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 lg:mx-0 lg:px-0">
 
             {/* ── Card 1: Today View ── */}
             <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1, duration: 0.5 }}
