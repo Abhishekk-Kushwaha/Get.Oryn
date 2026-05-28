@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
 import { LandingPage } from "./components/LandingPage";
 import { VALID_VIEWS, type ViewType } from "./hooks/useAppRouter";
@@ -7,6 +7,17 @@ const AppContent = lazy(() => import("./AppContent"));
 
 export default function App() {
   const [showApp, setShowApp] = useState(false);
+  const savedScrollPositionRef = useRef(0);
+
+  // Restore scroll position when leaving the app back to the landing page
+  useEffect(() => {
+    if (!showApp && savedScrollPositionRef.current > 0) {
+      const timer = setTimeout(() => {
+        window.scrollTo(0, savedScrollPositionRef.current);
+      }, 40);
+      return () => clearTimeout(timer);
+    }
+  }, [showApp]);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -40,6 +51,7 @@ export default function App() {
   }, []);
 
   const handleEnterApp = () => {
+    savedScrollPositionRef.current = window.scrollY || document.documentElement.scrollTop || 0;
     const landingUrl = `${window.location.pathname}${window.location.search}`;
     setShowApp(true);
     window.history.pushState({ orynDemoEntry: true }, "", `${landingUrl}#today`);
