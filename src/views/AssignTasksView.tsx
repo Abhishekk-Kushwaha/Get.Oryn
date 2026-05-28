@@ -196,7 +196,7 @@ export function AssignTasksView({
             </div>
             <button
               onClick={() => {
-                window.history.back();
+                setView("planner");
                 fetchGoals();
               }}
               className="flex items-center justify-center rounded-[10px] px-4 md:px-5 py-2 text-[12px] font-semibold transition-all shrink-0"
