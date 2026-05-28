@@ -369,38 +369,324 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
         </div>
       </div>
 
-      {/* ═══════════ PROBLEM → SOLUTION ═══════════ */}
-      <div className="bg-white py-20 md:py-28">
-        <div className="max-w-5xl mx-auto px-6">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-5">
-              You don't lack motivation.<br/><span className="text-orange-500">You lack a system.</span>
-            </h2>
-            <p className="text-slate-500 text-lg max-w-2xl mx-auto">Most people juggle 3-4 apps just to manage their day. Oryn replaces them all with one fluid workspace.</p>
+      {/* ═══════════ WHY ORYN — EMOTIONAL HOOK + TRANSFORMATION ═══════════ */}
+      <div className="bg-white py-20 md:py-28 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6">
+
+          {/* Section label */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-6"
+          >
+            <span className="inline-flex items-center gap-2 text-orange-500 text-xs font-bold uppercase tracking-[0.2em] bg-orange-50 border border-orange-200/60 px-4 py-1.5 rounded-full">
+              <Flame size={13} /> Why Oryn
+            </span>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Before */}
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-red-50/60 border border-red-200/50 rounded-3xl p-8">
-              <div className="text-red-500 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2"><X size={16}/> Without Oryn</div>
-              <ul className="space-y-3">
-                {["Scattered across Notion, Todoist & spreadsheets","Forget habits after the first week","No visibility into long-term progress","Constant context-switching kills focus"].map((item,i)=>(
-                  <li key={i} className="flex gap-3 text-slate-600 text-sm"><span className="text-red-400 mt-0.5 shrink-0">✗</span>{item}</li>
-                ))}
-              </ul>
+          {/* ── Layer 1: The Emotional Hook ── */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16 md:mb-20"
+          >
+            <h2 className="text-3xl md:text-5xl lg:text-[3.4rem] font-black tracking-tight text-slate-900 leading-[1.15] mb-5 max-w-4xl mx-auto">
+              <motion.span initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1, duration: 0.5 }} className="inline-block">Wake up.&nbsp;</motion.span>
+              <motion.span initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.25, duration: 0.5 }} className="inline-block">Open Oryn.&nbsp;</motion.span>
+              <motion.span initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.5 }} className="inline-block"><span className="text-orange-500">Move.</span></motion.span>
+            </h2>
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+              className="text-slate-400 text-base md:text-lg"
+            >
+              See proof you're changing — <span className="text-slate-900 font-semibold">every week.</span>
+            </motion.p>
+          </motion.div>
+
+          {/* ── Layer 2: Horizontal Transformation Cards with Visuals ── */}
+          <div className="flex gap-4 md:gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 lg:mx-0 lg:px-0">
+
+            {/* ── Card 1: Today View ── */}
+            <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1, duration: 0.5 }}
+              className="relative rounded-[24px] overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
+              <div className="bg-slate-800 px-5 py-4">
+                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
+                <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Woke up, no clue what to do</p>
+                <div className="flex flex-col gap-2 mt-4 opacity-50">
+                  <div className="flex items-center gap-2.5"><div className="w-4 h-4 rounded border border-white/20" /><div className="h-2.5 w-24 rounded bg-white/12" /><div className="ml-auto text-[10px] text-red-400/70 font-bold">overdue</div></div>
+                  <div className="flex items-center gap-2.5"><div className="w-4 h-4 rounded border border-white/20" /><div className="h-2.5 w-16 rounded bg-white/12" /><div className="ml-auto text-[10px] text-red-400/70 font-bold">missed</div></div>
+                  <div className="flex items-center gap-2.5"><div className="w-4 h-4 rounded border border-dashed border-white/10" /><div className="h-2.5 w-20 rounded bg-white/8" /></div>
+                </div>
+              </div>
+              <div className="bg-orange-50 px-5 py-4 flex-1 flex flex-col border-t-2 border-orange-400">
+                <p className="text-orange-600 text-[10px] font-bold uppercase tracking-wider mb-2">After Oryn</p>
+                <p className="text-slate-900 text-[17px] md:text-[19px] font-black leading-tight mb-3">Your today, sorted ✦ Achieve scheduled task</p>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2.5 bg-white rounded-xl px-3 py-2.5 border border-orange-200/50 shadow-sm">
+                    <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center"><Check size={11} className="text-white" /></div>
+                    <div className="h-2.5 w-24 rounded bg-orange-200/70" />
+                    <div className="ml-auto text-[10px] text-emerald-600 font-extrabold">Done ✓</div>
+                  </div>
+                  <div className="flex items-center gap-2.5 bg-white rounded-xl px-3 py-2.5 border border-orange-100/60">
+                    <div className="w-5 h-5 rounded-full border-2 border-orange-400" />
+                    <div className="h-2.5 w-18 rounded bg-slate-200" />
+                    <div className="ml-auto text-[10px] text-orange-500 font-extrabold">Focus →</div>
+                  </div>
+                  <div className="flex items-center gap-2.5 bg-white/60 rounded-xl px-3 py-2.5 border border-slate-100">
+                    <div className="w-5 h-5 rounded-full border-2 border-slate-200" />
+                    <div className="h-2.5 w-28 rounded bg-slate-100" />
+                  </div>
+                </div>
+              </div>
             </motion.div>
-            {/* After */}
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-emerald-50/60 border border-emerald-200/50 rounded-3xl p-8">
-              <div className="text-emerald-600 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2"><CheckCircle2 size={16}/> With Oryn</div>
-              <ul className="space-y-3">
-                {["One dashboard for goals, habits & daily tasks","Visual streaks that make consistency addictive","Heatmaps & charts show your real trajectory","Built-in Focus Mode eliminates distractions"].map((item,i)=>(
-                  <li key={i} className="flex gap-3 text-slate-700 text-sm"><span className="text-emerald-500 mt-0.5 shrink-0">✓</span>{item}</li>
-                ))}
-              </ul>
+
+            {/* ── Card 2: Progress Comparison ── */}
+            <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2, duration: 0.5 }}
+              className="relative rounded-[24px] overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
+              <div className="bg-slate-800 px-5 py-4">
+                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
+                <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">No idea if improving</p>
+                <div className="flex items-end gap-2.5 h-14 mt-4 opacity-35">
+                  {[38, 35, 40, 32, 37, 34, 36].map((h, i) => (
+                    <div key={i} className="flex-1 rounded-t bg-white/15" style={{ height: `${h}%` }} />
+                  ))}
+                </div>
+              </div>
+              <div className="bg-blue-50 px-5 py-4 flex-1 flex flex-col border-t-2 border-blue-500">
+                <p className="text-blue-600 text-[10px] font-bold uppercase tracking-wider mb-2">After Oryn</p>
+                <p className="text-slate-900 text-lg md:text-xl font-black leading-tight mb-3">Compare & grow 📈</p>
+                <div className="w-full aspect-[4/1] relative mt-2">
+                  <svg viewBox="0 0 400 100" className="w-full h-full overflow-visible">
+                    {/* Horizontal grid lines */}
+                    <line x1="0" y1="20" x2="400" y2="20" stroke="#cbd5e1" strokeWidth="0.8" strokeOpacity="0.4" />
+                    <line x1="0" y1="40" x2="400" y2="40" stroke="#cbd5e1" strokeWidth="0.8" strokeOpacity="0.4" />
+                    <line x1="0" y1="60" x2="400" y2="60" stroke="#cbd5e1" strokeWidth="0.8" strokeOpacity="0.4" />
+                    <line x1="0" y1="80" x2="400" y2="80" stroke="#cbd5e1" strokeWidth="0.8" strokeOpacity="0.4" />
+
+                    {/* Last week line (pink, dotted/dashed) */}
+                    <path
+                      d="M 0 69 C 18 69, 18 62, 36 62 C 54 62, 54 52, 72 52 C 90 52, 90 50, 108 50 C 126 50, 126 57, 144 57 C 162 57, 162 73, 180 73 C 198 73, 198 60, 216 60 C 234 60, 234 55, 252 55 C 270 55, 270 59, 288 59 C 306 59, 306 58, 324 58 C 342 58, 342 47, 360 47 C 380 47, 380 68, 400 68"
+                      fill="none"
+                      stroke="#ec4899"
+                      strokeWidth="2.5"
+                      strokeDasharray="4 4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+
+                    {/* This week line (teal, solid) */}
+                    <path
+                      d="M 0 38 C 18 38, 18 47, 36 47 C 54 47, 54 25, 72 25 C 90 25, 90 31, 108 31 C 126 31, 126 34, 144 34 C 162 34, 162 90, 180 90 C 198 90, 198 66, 216 66 C 234 66, 234 20, 252 20 C 270 20, 270 79, 288 79 C 306 79, 306 84, 324 84 C 342 84, 342 63, 360 63 C 380 63, 380 63, 400 63"
+                      fill="none"
+                      stroke="#0f766e"
+                      strokeWidth="3.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+
+                    {/* Last week dots (pink) */}
+                    {[
+                      { x: 0, y: 69 },
+                      { x: 36, y: 62 },
+                      { x: 72, y: 52 },
+                      { x: 108, y: 50 },
+                      { x: 144, y: 57 },
+                      { x: 180, y: 73 },
+                      { x: 216, y: 60 },
+                      { x: 252, y: 55 },
+                      { x: 288, y: 59 },
+                      { x: 324, y: 58 },
+                      { x: 360, y: 47 },
+                      { x: 400, y: 68 }
+                    ].map((pt, idx) => (
+                      <circle key={`lw-${idx}`} cx={pt.x} cy={pt.y} r="4" fill="#ec4899" stroke="#fff" strokeWidth="1.2" />
+                    ))}
+
+                    {/* This week dots (teal) */}
+                    {[
+                      { x: 0, y: 38 },
+                      { x: 36, y: 47 },
+                      { x: 72, y: 25 },
+                      { x: 108, y: 31 },
+                      { x: 144, y: 34 },
+                      { x: 180, y: 90 },
+                      { x: 216, y: 66 },
+                      { x: 252, y: 20 },
+                      { x: 288, y: 79 },
+                      { x: 324, y: 84 },
+                      { x: 360, y: 63 },
+                      { x: 400, y: 63 }
+                    ].map((pt, idx) => (
+                      <circle key={`tw-${idx}`} cx={pt.x} cy={pt.y} r="4" fill="#0f766e" stroke="#fff" strokeWidth="1.2" />
+                    ))}
+                  </svg>
+                </div>
+                <div className="flex items-center justify-center gap-4 mt-3">
+                  <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-pink-500 border border-white shadow-sm" /><span className="text-[10px] text-slate-400 font-medium">Last week</span></div>
+                  <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-teal-700 border border-white shadow-sm" /><span className="text-[10px] text-slate-700 font-bold">This week</span></div>
+                </div>
+              </div>
             </motion.div>
+
+            {/* ── Card 3: Weekly/Monthly Planner ── */}
+            <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3, duration: 0.5 }}
+              className="relative rounded-[24px] overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
+              <div className="bg-slate-800 px-5 py-4">
+                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
+                <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Week flies by unplanned</p>
+                <div className="grid grid-cols-7 gap-1.5 mt-4">
+                  {['M','T','W','T','F','S','S'].map((d, i) => (
+                    <div key={i} className="text-[9px] text-white/25 text-center font-bold">{d}</div>
+                  ))}
+                  {Array.from({ length: 14 }).map((_, i) => (
+                    <div key={i} className="aspect-square rounded-md bg-white/5 border border-white/5" />
+                  ))}
+                </div>
+              </div>
+              <div className="bg-emerald-50 px-5 py-4 flex-1 flex flex-col border-t-2 border-emerald-500">
+                <p className="text-emerald-600 text-[10px] font-bold uppercase tracking-wider mb-2">After Oryn</p>
+                <p className="text-slate-900 text-lg md:text-xl font-black leading-tight mb-3">Plan weeks ahead 📅</p>
+                <div className="grid grid-cols-7 gap-1.5">
+                  {['M','T','W','T','F','S','S'].map((d, i) => (
+                    <div key={i} className="text-[9px] text-emerald-700/60 text-center font-bold">{d}</div>
+                  ))}
+                  {[3,1,2,0,3,1,0, 2,3,1,2,0,1,2].map((tasks, i) => (
+                    <div key={i} className={`aspect-square rounded-md flex flex-col items-center justify-center gap-[2px] border ${tasks > 0 ? 'bg-white border-emerald-200/60 shadow-sm' : 'bg-emerald-50/50 border-emerald-100/40'}`}>
+                      {tasks > 0 && Array.from({ length: Math.min(tasks, 3) }).map((_, j) => (
+                        <div key={j} className={`w-[65%] h-[2.5px] rounded-full ${j === 0 ? 'bg-emerald-400' : j === 1 ? 'bg-orange-400' : 'bg-blue-400'}`} />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* ── Card 4: Goal Tracker ── */}
+            <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.5 }}
+              className="relative rounded-[24px] overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
+              <div className="bg-slate-800 px-5 py-4">
+                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
+                <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Goals forgotten</p>
+                <div className="flex flex-col gap-3 mt-4 opacity-40">
+                  <div><div className="h-2 rounded-full bg-white/10 w-full"><div className="h-full rounded-full bg-white/15 w-[12%]" /></div><div className="text-[9px] text-white/20 mt-1">Learn React · ??%</div></div>
+                  <div><div className="h-2 rounded-full bg-white/10 w-full"><div className="h-full rounded-full bg-white/15 w-[6%]" /></div><div className="text-[9px] text-white/20 mt-1">Get Fit · ??%</div></div>
+                </div>
+              </div>
+              <div className="bg-purple-50 px-5 py-4 flex-1 flex flex-col border-t-2 border-purple-500">
+                <p className="text-purple-600 text-[10px] font-bold uppercase tracking-wider mb-2">After Oryn</p>
+                <p className="text-slate-900 text-lg md:text-xl font-black leading-tight mb-3">Know where you lag 🎯</p>
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-3 bg-white rounded-xl px-3.5 py-3 border border-purple-100/60 shadow-sm">
+                    <svg width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="13" fill="none" stroke="#e9d5ff" strokeWidth="3.5" /><circle cx="17" cy="17" r="13" fill="none" stroke="#a855f7" strokeWidth="3.5" strokeDasharray="81.7" strokeDashoffset="24.5" strokeLinecap="round" transform="rotate(-90 17 17)" /></svg>
+                    <div className="flex-1"><div className="text-xs font-bold text-slate-800">Learn React</div><div className="text-[10px] text-emerald-600 font-extrabold">On track · 70%</div></div>
+                  </div>
+                  <div className="flex items-center gap-3 bg-white rounded-xl px-3.5 py-3 border border-red-100/60 shadow-sm">
+                    <svg width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="13" fill="none" stroke="#fecaca" strokeWidth="3.5" /><circle cx="17" cy="17" r="13" fill="none" stroke="#ef4444" strokeWidth="3.5" strokeDasharray="81.7" strokeDashoffset="57.2" strokeLinecap="round" transform="rotate(-90 17 17)" /></svg>
+                    <div className="flex-1"><div className="text-xs font-bold text-slate-800">Get Fit</div><div className="text-[10px] text-red-500 font-extrabold">Behind · 30% ↓</div></div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* ── Card 5: Habits ── */}
+            <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5, duration: 0.5 }}
+              className="relative rounded-[24px] overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
+              <div className="bg-slate-800 px-5 py-4">
+                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
+                <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Streak dies at day 3</p>
+                <div className="flex gap-1.5 items-center mt-4">
+                  {[true, true, true, false, false, false, false].map((done, i) => (
+                    <div key={i} className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold ${done ? 'bg-white/15 text-white/40' : 'bg-white/5 border border-dashed border-white/12 text-white/20'}`}>
+                      {done ? '✓' : '×'}
+                    </div>
+                  ))}
+                </div>
+                <div className="text-[10px] text-red-400/50 mt-2 font-bold">🔥 Streak lost</div>
+              </div>
+              <div className="bg-amber-50 px-5 py-4 flex-1 flex flex-col border-t-2 border-amber-500">
+                <p className="text-amber-600 text-[10px] font-bold uppercase tracking-wider mb-2">After Oryn</p>
+                <p className="text-slate-900 text-lg md:text-xl font-black leading-tight mb-1">Consistency visible 🔥</p>
+                
+                {/* Morning Meditation Card */}
+                <div className="bg-white rounded-2xl p-3 border border-amber-100 shadow-sm mt-2 flex flex-col gap-2.5">
+                  {/* Header */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-base">
+                        🧘
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[11px] font-black text-slate-800 leading-tight">Morning Meditation</span>
+                        <span className="text-[9px] text-slate-400 font-medium">Health · Daily</span>
+                      </div>
+                    </div>
+                    
+                    {/* Streak Badge */}
+                    <div className="flex items-center gap-0.5 bg-emerald-50 border border-emerald-100 rounded-full px-1.5 py-0.5 text-[8px] text-emerald-600 font-black">
+                      <span>🔥</span>
+                      <span>↑</span>
+                      <span>57</span>
+                    </div>
+                  </div>
+
+                  {/* Dot Grid */}
+                  <div className="flex justify-between gap-[2px] mt-0.5">
+                    {[
+                      [true, true, true, true],
+                      [true, true, true, true],
+                      [true, true, true, true],
+                      [true, true, true, true],
+                      [true, true, true, true],
+                      [true, true, true, true],
+                      [true, true, true, true],
+                      [true, true, true, true],
+                      [true, false, true, true],
+                      [true, true, true, true],
+                      [true, true, true, true],
+                      [true, true, true, true],
+                      [true, true, true, true],
+                      [true, true, true, true],
+                      [true, true, true, true],
+                      [true, true, true, true]
+                    ].map((col, cIdx) => (
+                      <div key={cIdx} className="flex flex-col gap-[2px]">
+                        {col.map((done, rIdx) => (
+                          <div
+                            key={rIdx}
+                            className={`w-1.5 h-1.5 rounded-[1.5px] ${
+                              done ? 'bg-emerald-400' : 'bg-slate-100'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Footer */}
+                  <div className="flex items-center justify-between mt-0.5 pt-1.5 border-t border-slate-50">
+                    <span className="text-[9px] text-emerald-600 font-black">98% this month</span>
+                    
+                    <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-md px-1.5 py-0.5 text-[8px] text-slate-500 font-bold shadow-[0_1px_1px_rgba(0,0,0,0.02)]">
+                      <span>✓</span>
+                      <span>Completed</span>
+                      <span className="text-slate-300 font-normal ml-0.5">&gt;</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
           </div>
+
         </div>
       </div>
+
 
       {/* ═══════════ FEATURES BENTO ═══════════ */}
       <div id="features" className="bg-slate-50 py-20 md:py-28">

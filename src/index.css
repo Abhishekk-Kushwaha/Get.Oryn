@@ -529,3 +529,12 @@ body::-webkit-scrollbar-thumb,
   border: 1px solid var(--heatmap-empty-border);
 }
 
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
