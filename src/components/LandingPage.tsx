@@ -378,7 +378,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
             {/* ── Card 1: Today View ── */}
             <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1, duration: 0.5 }}
-              className="relative rounded-[24px] overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
+              className="relative rounded-2xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
               <div className="bg-slate-800 px-5 py-4">
                 <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
                 <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Woke up, no clue what to do today</p>
@@ -412,7 +412,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
             {/* ── Card 2: Progress Comparison ── */}
             <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2, duration: 0.5 }}
-              className="relative rounded-[24px] overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
+              className="relative rounded-2xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
               <div className="bg-slate-800 px-5 py-4">
                 <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
                 <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">No idea if improving</p>
@@ -500,7 +500,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
             {/* ── Card 3: Weekly/Monthly Planner ── */}
             <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3, duration: 0.5 }}
-              className="relative rounded-[24px] overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
+              className="relative rounded-2xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
               <div className="bg-slate-800 px-5 py-4">
                 <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
                 <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Week flies by unplanned</p>
@@ -533,7 +533,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
             {/* ── Card 4: Goal Tracker ── */}
             <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.5 }}
-              className="relative rounded-[24px] overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
+              className="relative rounded-2xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
               <div className="bg-slate-800 px-5 py-4">
                 <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
                 <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Goals forgotten</p>
@@ -560,7 +560,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
             {/* ── Card 5: Habits ── */}
             <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5, duration: 0.5 }}
-              className="relative rounded-[24px] overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
+              className="relative rounded-2xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
               <div className="bg-slate-800 px-5 py-4">
                 <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
                 <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Streak dies at day 3</p>
