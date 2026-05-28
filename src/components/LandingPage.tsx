@@ -396,7 +396,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             <h2 className="text-3xl md:text-5xl lg:text-[3.4rem] font-black tracking-tight text-slate-900 leading-[1.15] mb-5 max-w-4xl mx-auto">
               <motion.span initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1, duration: 0.5 }} className="inline-block">Wake up.&nbsp;</motion.span>
               <motion.span initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.25, duration: 0.5 }} className="inline-block">Open Oryn.&nbsp;</motion.span>
-              <motion.span initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.5 }} className="inline-block"><span className="text-orange-500">Move.</span></motion.span>
+              <motion.span initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.5 }} className="inline-block"><span className="text-orange-600">Move.</span></motion.span>
             </h2>
             <motion.p
               initial={{ opacity: 0, y: 8 }}
@@ -405,7 +405,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               transition={{ delay: 0.6, duration: 0.5 }}
               className="text-slate-400 text-base md:text-lg"
             >
-              <span className="text-orange-500 font-bold">See proof you're changing</span> — <span className="text-slate-900 font-semibold">every week.</span>
+              <span className="text-orange-600 font-bold">See proof you're changing</span> — <span className="text-slate-900 font-semibold">every week.</span>
             </motion.p>
           </motion.div>
 
