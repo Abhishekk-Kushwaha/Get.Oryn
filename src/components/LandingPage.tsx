@@ -652,64 +652,6 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </div>
 
 
-      {/* ═══════════ FEATURES BENTO ═══════════ */}
-      <div id="features" className="bg-slate-50 py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4 text-slate-900">Everything you need. <span className="text-slate-400">Nothing you don't.</span></h2>
-            <p className="text-slate-500 text-lg max-w-2xl mx-auto">Four pillars. Zero bloat. Built for people who ship.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.05 }}
-              className="md:col-span-2 relative overflow-hidden rounded-[32px] bg-white border border-slate-200 p-8 lg:p-12 hover:shadow-lg transition-shadow group">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-[80px] group-hover:bg-orange-500/20 transition-colors" />
-              <LayoutDashboard className="w-10 h-10 text-orange-500 mb-6" strokeWidth={1.5} />
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">Unified Dashboard</h3>
-              <p className="text-slate-500 max-w-md text-lg leading-relaxed mb-8">Your goals, habits, and daily tasks — one glance. Stop context-switching, start executing.</p>
-              <div className="pointer-events-none w-full max-w-sm rounded-2xl bg-white border border-slate-100 p-4 shadow-xl shadow-slate-200/50">
-                <div className="flex items-center justify-between mb-4"><div className="w-20 h-2 rounded-full bg-slate-200" /><div className="w-8 h-8 rounded-full bg-slate-100" /></div>
-                <div className="space-y-3">
-                  <div className="w-full h-12 rounded-xl bg-orange-50/50 border border-orange-100 flex items-center px-4 gap-3"><div className="w-5 h-5 rounded-full border-2 border-orange-400" /><div className="w-32 h-2 rounded bg-orange-200" /></div>
-                  <div className="w-full h-12 rounded-xl bg-slate-50 flex items-center px-4 gap-3"><div className="w-5 h-5 rounded-full border-2 border-slate-300" /><div className="w-24 h-2 rounded bg-slate-200" /></div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-              className="relative overflow-hidden rounded-[32px] bg-white border border-slate-200 p-8 lg:p-12 flex flex-col hover:shadow-lg transition-shadow group">
-              <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] group-hover:bg-blue-500/20 transition-colors" />
-              <Activity className="w-10 h-10 text-blue-500 mb-6" strokeWidth={1.5} />
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">Habit Streaks</h3>
-              <p className="text-slate-500 text-lg leading-relaxed mb-auto">Visual streaks that make consistency addictive. Never break the chain.</p>
-              <div className="mt-8 flex gap-2">
-                {[1,2,3,4,5,6,7].map(i => <div key={i} className={`flex-1 aspect-[1/2] rounded-full ${i>4?'bg-slate-100':'bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.3)]'}`} />)}
-              </div>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}
-              className="relative overflow-hidden rounded-[32px] bg-white border border-slate-200 p-8 lg:p-12 hover:shadow-lg transition-shadow group">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px] group-hover:bg-emerald-500/20 transition-colors" />
-              <Target className="w-10 h-10 text-emerald-500 mb-6" strokeWidth={1.5} />
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">Goal Mastery</h3>
-              <p className="text-slate-500 text-lg leading-relaxed">Break massive ambitions into milestones. Watch your progress compound.</p>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-              className="md:col-span-2 relative overflow-hidden rounded-[32px] bg-white border border-slate-200 p-8 lg:p-12 hover:shadow-lg transition-shadow group">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] group-hover:bg-purple-500/20 transition-colors" />
-              <Zap className="w-10 h-10 text-purple-500 mb-6" strokeWidth={1.5} />
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">Focus Mode</h3>
-              <p className="text-slate-500 text-lg leading-relaxed mb-8 max-w-xl">Block distractions. Enter deep work. Oryn logs every focus session automatically so you see exactly where your hours go.</p>
-              <div className="flex flex-wrap gap-3">
-                <div className="flex items-center gap-2 text-purple-900 bg-purple-100 px-5 py-2.5 rounded-xl border border-purple-200 font-medium text-sm"><Zap size={16} className="text-purple-600" /> 25-min Deep Work</div>
-                <div className="flex items-center gap-2 text-slate-600 bg-slate-50 px-5 py-2.5 rounded-xl border border-slate-200 text-sm"><BarChart3 size={16} className="text-slate-400" /> Auto-logged Sessions</div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
       {/* ═══════════ MID-PAGE CTA ═══════════ */}
       <div className="bg-[#07080a] py-16 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-amber-500/5" />
