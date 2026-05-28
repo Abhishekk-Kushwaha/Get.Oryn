@@ -405,7 +405,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               transition={{ delay: 0.6, duration: 0.5 }}
               className="text-slate-400 text-base md:text-lg"
             >
-              See proof you're changing — <span className="text-slate-900 font-semibold">every week.</span>
+              See proof you're changing — <span className="text-orange-500 font-bold">every week.</span>
             </motion.p>
           </motion.div>
 
