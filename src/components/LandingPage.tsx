@@ -379,30 +379,30 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             {/* ── Card 1: Today View ── */}
             <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1, duration: 0.5 }}
               className="relative rounded-2xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
-              <div className="bg-slate-800 px-5 py-4 h-[185px]">
-                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
-                <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Woke up, no clue what to do today</p>
-                <div className="flex flex-col gap-2 mt-4 opacity-50">
+              <div className="bg-slate-800 px-5 py-3 h-[155px]">
+                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-1.5">Before</p>
+                <p className="text-red-400/80 text-[16px] md:text-[18px] font-black leading-tight">Woke up, no clue what to do today</p>
+                <div className="flex flex-col gap-1.5 mt-2.5 opacity-50">
                   <div className="flex items-center gap-2.5"><div className="w-4 h-4 rounded border border-white/20" /><div className="h-2.5 w-24 rounded bg-white/12" /><div className="ml-auto text-[10px] text-red-400/70 font-bold">overdue</div></div>
                   <div className="flex items-center gap-2.5"><div className="w-4 h-4 rounded border border-white/20" /><div className="h-2.5 w-16 rounded bg-white/12" /><div className="ml-auto text-[10px] text-red-400/70 font-bold">missed</div></div>
                   <div className="flex items-center gap-2.5"><div className="w-4 h-4 rounded border border-dashed border-white/10" /><div className="h-2.5 w-20 rounded bg-white/8" /></div>
                 </div>
               </div>
-              <div className="bg-orange-50 px-5 py-4 flex-1 flex flex-col border-t-2 border-orange-400">
-                <p className="text-orange-600 text-[10px] font-bold uppercase tracking-wider mb-2">After Oryn</p>
-                <p className="text-slate-900 text-[17px] md:text-[19px] font-black leading-tight mb-3">Your today, sorted ✦ Achieve scheduled task</p>
-                <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2.5 bg-white rounded-xl px-3 py-2.5 border border-orange-200/50 shadow-sm">
+              <div className="bg-orange-50 px-5 py-3 flex-1 flex flex-col border-t-2 border-orange-400">
+                <p className="text-orange-600 text-[10px] font-bold uppercase tracking-wider mb-1.5">After Oryn</p>
+                <p className="text-slate-900 text-[15px] md:text-[17px] font-black leading-tight mb-2">Your today, sorted ✦ Achieve scheduled task</p>
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center gap-2.5 bg-white rounded-xl px-3 py-1.5 border border-orange-200/50 shadow-sm">
                     <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center"><Check size={11} className="text-white" /></div>
                     <div className="h-2.5 w-24 rounded bg-orange-200/70" />
                     <div className="ml-auto text-[10px] text-emerald-600 font-extrabold">Done ✓</div>
                   </div>
-                  <div className="flex items-center gap-2.5 bg-white rounded-xl px-3 py-2.5 border border-orange-100/60">
+                  <div className="flex items-center gap-2.5 bg-white rounded-xl px-3 py-1.5 border border-orange-100/60">
                     <div className="w-5 h-5 rounded-full border-2 border-orange-400" />
                     <div className="h-2.5 w-18 rounded bg-slate-200" />
                     <div className="ml-auto text-[10px] text-orange-500 font-extrabold">Focus →</div>
                   </div>
-                  <div className="flex items-center gap-2.5 bg-white/60 rounded-xl px-3 py-2.5 border border-slate-100">
+                  <div className="flex items-center gap-2.5 bg-white/60 rounded-xl px-3 py-1.5 border border-slate-100">
                     <div className="w-5 h-5 rounded-full border-2 border-slate-200" />
                     <div className="h-2.5 w-28 rounded bg-slate-100" />
                   </div>
@@ -413,19 +413,19 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             {/* ── Card 2: Progress Comparison ── */}
             <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2, duration: 0.5 }}
               className="relative rounded-2xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
-              <div className="bg-slate-800 px-5 py-4 h-[185px]">
-                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
-                <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">No idea if improving</p>
-                <div className="flex items-end gap-2.5 h-14 mt-4 opacity-35">
+              <div className="bg-slate-800 px-5 py-3 h-[155px]">
+                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-1.5">Before</p>
+                <p className="text-red-400/80 text-[16px] md:text-[18px] font-black leading-tight">No idea if improving</p>
+                <div className="flex items-end gap-2.5 h-14 mt-3.5 opacity-35">
                   {[38, 35, 40, 32, 37, 34, 36].map((h, i) => (
                     <div key={i} className="flex-1 rounded-t bg-white/15" style={{ height: `${h}%` }} />
                   ))}
                 </div>
               </div>
-              <div className="bg-blue-50 px-5 py-4 flex-1 flex flex-col border-t-2 border-blue-500">
-                <p className="text-blue-600 text-[10px] font-bold uppercase tracking-wider mb-2">After Oryn</p>
-                <p className="text-slate-900 text-lg md:text-xl font-black leading-tight mb-3">Compare & grow 📈</p>
-                <div className="w-full aspect-[4/1] relative mt-2">
+              <div className="bg-blue-50 px-5 py-3 flex-1 flex flex-col border-t-2 border-blue-500">
+                <p className="text-blue-600 text-[10px] font-bold uppercase tracking-wider mb-1.5">After Oryn</p>
+                <p className="text-slate-900 text-base md:text-lg font-black leading-tight mb-2">Compare & grow 📈</p>
+                <div className="w-full aspect-[4/1] relative mt-1.5">
                   <svg viewBox="0 0 400 100" className="w-full h-full overflow-visible">
                     {/* Horizontal grid lines */}
                     <line x1="0" y1="20" x2="400" y2="20" stroke="#cbd5e1" strokeWidth="0.8" strokeOpacity="0.4" />
@@ -501,10 +501,10 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             {/* ── Card 3: Weekly/Monthly Planner ── */}
             <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3, duration: 0.5 }}
               className="relative rounded-2xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
-              <div className="bg-slate-800 px-5 py-4 h-[185px]">
-                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
-                <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Week flies by unplanned</p>
-                <div className="grid grid-cols-7 gap-1.5 mt-4">
+              <div className="bg-slate-800 px-5 py-3 h-[155px]">
+                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-1.5">Before</p>
+                <p className="text-red-400/80 text-[16px] md:text-[18px] font-black leading-tight">Week flies by unplanned</p>
+                <div className="grid grid-cols-7 gap-1.5 mt-3">
                   {['M','T','W','T','F','S','S'].map((d, i) => (
                     <div key={i} className="text-[9px] text-white/25 text-center font-bold">{d}</div>
                   ))}
@@ -513,9 +513,9 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
                   ))}
                 </div>
               </div>
-              <div className="bg-emerald-50 px-5 py-4 flex-1 flex flex-col border-t-2 border-emerald-500">
-                <p className="text-emerald-600 text-[10px] font-bold uppercase tracking-wider mb-2">After Oryn</p>
-                <p className="text-slate-900 text-lg md:text-xl font-black leading-tight mb-3">Plan weeks ahead 📅</p>
+              <div className="bg-emerald-50 px-5 py-3 flex-1 flex flex-col border-t-2 border-emerald-500">
+                <p className="text-emerald-600 text-[10px] font-bold uppercase tracking-wider mb-1.5">After Oryn</p>
+                <p className="text-slate-900 text-base md:text-lg font-black leading-tight mb-2">Plan weeks ahead 📅</p>
                 <div className="grid grid-cols-7 gap-1.5">
                   {['M','T','W','T','F','S','S'].map((d, i) => (
                     <div key={i} className="text-[9px] text-emerald-700/60 text-center font-bold">{d}</div>
@@ -534,17 +534,17 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             {/* ── Card 4: Goal Tracker ── */}
             <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.5 }}
               className="relative rounded-2xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
-              <div className="bg-slate-800 px-5 py-4 h-[185px]">
-                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
-                <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Goals forgotten</p>
-                <div className="flex flex-col gap-3 mt-4 opacity-40">
-                  <div><div className="h-2 rounded-full bg-white/10 w-full"><div className="h-full rounded-full bg-white/15 w-[12%]" /></div><div className="text-[9px] text-white/20 mt-1">Learn React · ??%</div></div>
-                  <div><div className="h-2 rounded-full bg-white/10 w-full"><div className="h-full rounded-full bg-white/15 w-[6%]" /></div><div className="text-[9px] text-white/20 mt-1">Get Fit · ??%</div></div>
+              <div className="bg-slate-800 px-5 py-3 h-[155px]">
+                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-1.5">Before</p>
+                <p className="text-red-400/80 text-[16px] md:text-[18px] font-black leading-tight">Goals forgotten</p>
+                <div className="flex flex-col gap-2 mt-3 opacity-40">
+                  <div><div className="h-2 rounded-full bg-white/10 w-full"><div className="h-full rounded-full bg-white/15 w-[12%]" /></div><div className="text-[9px] text-white/20 mt-0.5">Learn React · ??%</div></div>
+                  <div><div className="h-2 rounded-full bg-white/10 w-full"><div className="h-full rounded-full bg-white/15 w-[6%]" /></div><div className="text-[9px] text-white/20 mt-0.5">Get Fit · ??%</div></div>
                 </div>
               </div>
-              <div className="bg-purple-50 px-5 py-4 flex-1 flex flex-col border-t-2 border-purple-500">
-                <p className="text-purple-600 text-[10px] font-bold uppercase tracking-wider mb-2">After Oryn</p>
-                <p className="text-slate-900 text-lg md:text-xl font-black leading-tight mb-3">Know where you lag 🎯</p>
+              <div className="bg-purple-50 px-5 py-3 flex-1 flex flex-col border-t-2 border-purple-500">
+                <p className="text-purple-600 text-[10px] font-bold uppercase tracking-wider mb-1.5">After Oryn</p>
+                <p className="text-slate-900 text-base md:text-lg font-black leading-tight mb-2">Know where you lag 🎯</p>
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center gap-3 bg-white rounded-xl px-3.5 py-3 border border-purple-100/60 shadow-sm">
                     <svg width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="13" fill="none" stroke="#e9d5ff" strokeWidth="3.5" /><circle cx="17" cy="17" r="13" fill="none" stroke="#a855f7" strokeWidth="3.5" strokeDasharray="81.7" strokeDashoffset="24.5" strokeLinecap="round" transform="rotate(-90 17 17)" /></svg>
@@ -561,24 +561,24 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             {/* ── Card 5: Habits ── */}
             <motion.div initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5, duration: 0.5 }}
               className="relative rounded-2xl overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 group w-[75vw] sm:w-[44vw] lg:w-[280px] snap-center shrink-0">
-              <div className="bg-slate-800 px-5 py-4 h-[185px]">
-                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">Before</p>
-                <p className="text-red-400/80 text-lg md:text-xl font-black leading-tight">Streak dies at day 3</p>
-                <div className="flex gap-1.5 items-center mt-4">
+              <div className="bg-slate-800 px-5 py-3 h-[155px]">
+                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-1.5">Before</p>
+                <p className="text-red-400/80 text-[16px] md:text-[18px] font-black leading-tight">Streak dies at day 3</p>
+                <div className="flex gap-1.5 items-center mt-3">
                   {[true, true, true, false, false, false, false].map((done, i) => (
                     <div key={i} className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold ${done ? 'bg-white/15 text-white/40' : 'bg-white/5 border border-dashed border-white/12 text-white/20'}`}>
                       {done ? '✓' : '×'}
                     </div>
                   ))}
                 </div>
-                <div className="text-[10px] text-red-400/50 mt-2 font-bold">🔥 Streak lost</div>
+                <div className="text-[10px] text-red-400/50 mt-1.5 font-bold">🔥 Streak lost</div>
               </div>
-              <div className="bg-amber-50 px-5 py-4 flex-1 flex flex-col border-t-2 border-amber-500">
-                <p className="text-amber-600 text-[10px] font-bold uppercase tracking-wider mb-2">After Oryn</p>
-                <p className="text-slate-900 text-lg md:text-xl font-black leading-tight mb-1">Consistency visible 🔥</p>
+              <div className="bg-amber-50 px-5 py-3 flex-1 flex flex-col border-t-2 border-amber-500">
+                <p className="text-amber-600 text-[10px] font-bold uppercase tracking-wider mb-1.5">After Oryn</p>
+                <p className="text-slate-900 text-base md:text-lg font-black leading-tight mb-1">Consistency visible 🔥</p>
                 
                 {/* Morning Meditation Card */}
-                <div className="bg-white rounded-2xl p-3 border border-amber-100 shadow-sm mt-2 flex flex-col gap-2.5">
+                <div className="bg-white rounded-2xl p-2.5 border border-amber-100 shadow-sm mt-1.5 flex flex-col gap-2">
                   {/* Header */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -633,7 +633,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
                   </div>
 
                   {/* Footer */}
-                  <div className="flex items-center justify-between mt-0.5 pt-1.5 border-t border-slate-50">
+                  <div className="flex items-center justify-between mt-0.5 pt-1 border-t border-slate-50">
                     <span className="text-[9px] text-emerald-600 font-black">98% this month</span>
                     
                     <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-md px-1.5 py-0.5 text-[8px] text-slate-500 font-bold shadow-[0_1px_1px_rgba(0,0,0,0.02)]">
