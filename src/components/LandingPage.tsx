@@ -653,50 +653,14 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
 
       {/* ═══════════ MID-PAGE CTA ═══════════ */}
-      <div className="bg-slate-950 border-y border-slate-900 py-20 text-center relative overflow-hidden">
-        {/* Animated ambient background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-br from-orange-600/15 via-amber-500/5 to-transparent blur-3xl rounded-full pointer-events-none" />
-        {/* Subtle grid backdrop */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)', backgroundSize: '24px 24px' }} />
-        
+      <div className="bg-slate-50 border-y border-slate-200/80 py-16 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/[0.04] to-amber-500/[0.04]" />
         <div className="relative z-10 max-w-2xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            {/* Accent badge */}
-            <span className="inline-flex items-center gap-1.5 text-orange-400 text-[10px] font-extrabold uppercase tracking-[0.2em] bg-orange-500/10 border border-orange-500/20 px-3.5 py-1 rounded-full mb-6">
-              <Sparkles size={11} className="animate-pulse" /> Consistency is Key
-            </span>
-
-            <h3 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight leading-tight">
-              Stop planning to plan.<br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500">Start becoming.</span>
-            </h3>
-            
-            <p className="text-slate-400 text-sm md:text-base mb-8 max-w-md mx-auto leading-relaxed">
-              Your goals don't need more motivation.<br className="hidden sm:inline" /> They need consistency.
-            </p>
-
-            {/* Premium Interactive Button */}
-            <button 
-              onClick={onEnter} 
-              className="group relative inline-flex items-center justify-center p-0.5 rounded-full overflow-hidden font-bold tracking-tight transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] hover:shadow-[0_0_30px_rgba(249,115,22,0.3)] cursor-pointer"
-            >
-              {/* Spinning gradient border beam on hover */}
-              <span className="absolute inset-0 bg-gradient-to-r from-orange-500 via-amber-400 to-orange-600 rounded-full" />
-              
-              {/* Inner button container */}
-              <span className="relative px-8 py-3.5 rounded-full bg-slate-900 text-white transition-all duration-300 group-hover:bg-slate-950 flex items-center gap-2">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-orange-200">
-                  Try Oryn
-                </span>
-                <ArrowRight size={16} className="text-orange-400 transform group-hover:translate-x-1.5 transition-transform duration-300" />
-              </span>
-            </button>
-          </motion.div>
+          <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4">Stop planning to plan. Start becoming.</h3>
+          <p className="text-slate-500 mb-6">Your goals don't need more motivation. They need consistency.</p>
+          <button onClick={onEnter} className="px-6 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-bold rounded-2xl shadow-md shadow-orange-500/20 hover:scale-[1.02] active:scale-95 transition-all inline-flex items-center gap-1.5 cursor-pointer">
+            Try Oryn <ArrowRight size={16} />
+          </button>
         </div>
       </div>
 
