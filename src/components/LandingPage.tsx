@@ -955,7 +955,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white rounded-3xl p-5 text-slate-900 flex flex-col justify-between shadow-lg shadow-slate-200/30 border border-slate-200/60"
+              className="bg-white rounded-2xl p-5 text-slate-900 flex flex-col justify-between shadow-lg shadow-slate-200/30 border border-slate-200/60"
             >
               <div>
                 <div className="text-xs uppercase tracking-wider font-bold text-slate-400">Monthly</div>
@@ -978,7 +978,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="bg-gradient-to-b from-orange-500 to-orange-600 rounded-3xl p-5 text-white relative flex flex-col justify-between scale-[1.03] active:scale-100 transition-transform"
+              className="bg-gradient-to-b from-orange-500 to-orange-600 rounded-2xl p-5 text-white relative flex flex-col justify-between scale-[1.03] active:scale-100 transition-transform"
               style={{ boxShadow: '0 0 50px rgba(249,115,22,0.25)' }}
             >
               <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-white text-orange-600 text-[10px] px-3 py-1 rounded-full font-black tracking-wider shadow-md uppercase whitespace-nowrap border border-orange-100">
@@ -1006,7 +1006,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-6 bg-white border border-slate-200/80 rounded-[32px] p-5 sm:p-7 text-slate-900 overflow-hidden shadow-xl shadow-slate-200/40"
+            className="mt-6 bg-white border border-slate-200/80 rounded-2xl p-5 sm:p-7 text-slate-900 overflow-hidden shadow-xl shadow-slate-200/40"
           >
             <div className="text-center mb-6">
               <span className="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-slate-700">
@@ -1016,7 +1016,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
             <div className="grid grid-cols-2 gap-4">
               {/* Pizza */}
-              <div className="bg-slate-50 border border-slate-200/60 rounded-3xl p-5 text-center flex flex-col items-center justify-between">
+              <div className="bg-slate-50 border border-slate-200/60 rounded-2xl p-5 text-center flex flex-col items-center justify-between">
                 <div>
                   <div className="text-5xl mb-3 animate-bounce" style={{ animationDuration: '3s' }}>🍕</div>
                   <div className="font-black text-lg sm:text-xl text-slate-800">Pizza</div>
@@ -1029,7 +1029,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               </div>
 
               {/* Oryn */}
-              <div className="bg-orange-500/[0.04] border border-orange-500/20 rounded-3xl p-5 text-center flex flex-col items-center justify-between">
+              <div className="bg-orange-500/[0.04] border border-orange-500/20 rounded-2xl p-5 text-center flex flex-col items-center justify-between">
                 <div>
                   {/* Brand Logo Wrapper */}
                   <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center p-2 mb-3 shadow-lg shadow-orange-500/10 border border-orange-100">
