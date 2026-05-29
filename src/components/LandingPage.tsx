@@ -368,7 +368,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               className="text-slate-400 text-base md:text-lg flex items-center justify-center gap-2 flex-wrap"
             >
               <span className="bg-emerald-50 border border-emerald-100 text-emerald-700 px-3 py-0.5 rounded-full font-bold text-[13px] md:text-[15px] shadow-sm">See proof you're changing</span>
-              <span className="text-slate-300">—</span>
+              <span className="text-slate-300 hidden sm:inline">—</span>
               <span className="text-slate-900 font-semibold">every week.</span>
             </motion.p>
           </motion.div>
