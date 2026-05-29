@@ -966,7 +966,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
                 <div className="mt-4 bg-slate-50 border border-slate-100 rounded-2xl p-2 text-center text-[10px] sm:text-xs font-semibold text-slate-600">
                   Less than ₹4/day
                 </div>
-                <button onClick={onEnter} className="mt-4 w-full h-11 flex items-center justify-center bg-black hover:bg-slate-900 text-white rounded-2xl font-bold text-sm transition-all active:scale-95 cursor-pointer">
+                <button onClick={onEnter} className="mt-4 w-full h-11 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-white rounded-2xl font-bold text-sm transition-all active:scale-95 cursor-pointer">
                   Start Today
                 </button>
               </div>
