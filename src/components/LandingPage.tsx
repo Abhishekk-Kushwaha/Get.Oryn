@@ -30,7 +30,7 @@ function useCountUp(end: number, duration = 2000, startOnView = true) {
 
 export function LandingPage({ onEnter }: { onEnter: () => void }) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [isAnnual, setIsAnnual] = useState(true);
+
 
   // ─── Scroll-driven paper curl animation ───────────────────────
   const paperRef = useRef<HTMLDivElement>(null);
@@ -938,60 +938,126 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </div>
 
       {/* ═══════════ PRICING ═══════════ */}
-      <div id="pricing" className="bg-slate-50 py-20 md:py-28 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div id="pricing" className="bg-[#09090b] py-20 md:py-28 border-t border-zinc-900 relative overflow-hidden">
+        {/* Subtle dot grid in background */}
+        <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+        
+        <div className="max-w-md md:max-w-xl mx-auto px-6 w-full relative z-10">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4 text-slate-900">Simple pricing. No surprises.</h2>
-            <p className="text-slate-500 text-lg mb-6">Start free, upgrade when you're ready to go all-in.</p>
-            {/* Annual/Monthly toggle */}
-            <div className="inline-flex items-center bg-white border border-slate-200 rounded-full p-1">
-              <button onClick={() => setIsAnnual(false)} className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${!isAnnual ? 'bg-slate-900 text-white' : 'text-slate-500'}`}>Monthly</button>
-              <button onClick={() => setIsAnnual(true)} className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all flex items-center gap-1.5 ${isAnnual ? 'bg-slate-900 text-white' : 'text-slate-500'}`}>
-                Annual <span className="text-[10px] bg-emerald-500 text-white px-1.5 py-0.5 rounded-full font-bold">Save 25%</span>
-              </button>
-            </div>
+            <h2 className="text-4xl font-black text-white tracking-tight">Choose Consistency</h2>
+            <p className="text-slate-400 mt-2">Not another subscription.</p>
           </div>
 
-          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Free */}
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white border border-slate-200 rounded-[32px] p-8 lg:p-12 flex flex-col shadow-sm">
-              <h3 className="text-2xl font-bold mb-2 text-slate-900">Hobby</h3>
-              <p className="text-slate-500 mb-6 text-sm">Perfect to build momentum and prove the system works.</p>
-              <div className="text-5xl font-black mb-2 text-slate-900">$0</div>
-              <div className="text-sm text-slate-400 mb-8">Free forever</div>
-              <ul className="space-y-3 mb-auto text-sm">
-                {["Up to 3 Active Goals","10 Habits maximum","Basic Daily Planner","7-day history","Community support"].map((f,i)=>(
-                  <li key={i} className="flex items-center gap-3 text-slate-700"><Check size={16} className="text-emerald-500 shrink-0" />{f}</li>
-                ))}
-              </ul>
-              <button onClick={onEnter} className="mt-10 w-full py-4 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 transition-colors font-bold text-sm">
-                Try Demo
-              </button>
-            </motion.div>
-
-            {/* Pro */}
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-              className="bg-gradient-to-br from-orange-50 to-amber-50/50 border-2 border-orange-300 rounded-[32px] p-8 lg:p-12 flex flex-col relative overflow-hidden shadow-lg shadow-orange-500/5">
-              <div className="absolute top-6 right-6 bg-orange-500 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">Most Popular</div>
-              <h3 className="text-2xl font-bold mb-2 text-orange-950">Pro</h3>
-              <p className="text-orange-800/70 mb-6 text-sm">For those who are serious about transformation.</p>
-              <div className="flex items-baseline gap-2 mb-2">
-                <span className="text-5xl font-black text-orange-950">${isAnnual ? '6' : '8'}</span>
-                <span className="text-orange-600/50 font-medium">/mo</span>
-                {isAnnual && <span className="text-xs line-through text-orange-400">$8/mo</span>}
+          {/* Pricing Cards */}
+          <div className="grid grid-cols-2 gap-3">
+            {/* Monthly Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-3xl p-5 text-slate-900 flex flex-col justify-between shadow-xl"
+            >
+              <div>
+                <div className="text-xs uppercase tracking-wider font-bold text-slate-500">Monthly</div>
+                <div className="text-4xl font-black mt-3 text-slate-900">₹99</div>
+                <div className="text-slate-400 text-sm mt-0.5">per month</div>
               </div>
-              <div className="text-sm text-orange-700/60 mb-8">{isAnnual ? 'Billed annually ($72/yr)' : 'Billed monthly'}</div>
-              <ul className="space-y-3 mb-auto text-sm">
-                {["Unlimited Goals & Habits","Advanced Focus Mode + stats","Unlimited History & Insights","Priority email support","Export data anytime"].map((f,i)=>(
-                  <li key={i} className="flex items-center gap-3 text-orange-900"><Check size={16} className="text-orange-500 shrink-0" />{f}</li>
-                ))}
-              </ul>
-              <button onClick={onEnter} className="mt-10 w-full py-4 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-all hover:scale-[1.02] active:scale-95 font-bold text-sm shadow-md shadow-orange-500/20">
-                Try Demo
-              </button>
-              <div className="text-center text-[11px] text-orange-700/50 mt-3">Cancel anytime. No questions asked.</div>
+              <div>
+                <div className="mt-4 bg-slate-100 rounded-2xl p-2 text-center text-[10px] sm:text-xs font-semibold text-slate-700">
+                  Less than ₹4/day
+                </div>
+                <button onClick={onEnter} className="mt-4 w-full bg-black hover:bg-slate-900 text-white rounded-2xl py-3 font-bold text-sm transition-all active:scale-95 cursor-pointer">
+                  Start Today
+                </button>
+              </div>
+            </motion.div>
+
+            {/* 6 Months Card */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-gradient-to-b from-orange-500 to-orange-600 rounded-3xl p-5 text-white relative flex flex-col justify-between scale-[1.03] active:scale-100 transition-transform"
+              style={{ boxShadow: '0 0 50px rgba(249,115,22,0.25)' }}
+            >
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-white text-orange-600 text-[10px] px-3 py-1 rounded-full font-black tracking-wider shadow-md uppercase whitespace-nowrap border border-orange-100">
+                MOST POPULAR
+              </div>
+              <div className="mt-2">
+                <div className="text-xs uppercase tracking-wider font-bold text-orange-100">6 Months</div>
+                <div className="text-4xl font-black mt-3 text-white">₹249</div>
+                <div className="text-orange-100 text-sm mt-0.5">Only ₹41/month</div>
+              </div>
+              <div>
+                <div className="mt-4 bg-white/15 rounded-2xl p-2 text-center text-[10px] sm:text-xs font-semibold leading-snug">
+                  Stay long enough to see real change
+                </div>
+                <button onClick={onEnter} className="mt-4 w-full bg-white hover:bg-orange-50 text-orange-600 rounded-2xl py-3 font-black text-sm transition-all active:scale-95 cursor-pointer shadow-md shadow-orange-700/10">
+                  Stay Consistent
+                </button>
+              </div>
             </motion.div>
           </div>
+
+          {/* Pizza Comparison Card */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-6 bg-[#121214] border border-white/[0.06] rounded-[32px] p-5 sm:p-7 text-white overflow-hidden shadow-2xl"
+          >
+            <div className="text-center mb-6">
+              <span className="inline-flex items-center gap-2 bg-white/5 border border-white/[0.04] px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-slate-200">
+                🍕 Same Price. Different Outcome.
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              {/* Pizza */}
+              <div className="bg-white/5 border border-white/[0.03] rounded-3xl p-5 text-center flex flex-col items-center justify-between">
+                <div>
+                  <div className="text-5xl mb-3 animate-bounce" style={{ animationDuration: '3s' }}>🍕</div>
+                  <div className="font-black text-lg sm:text-xl text-slate-100">Pizza</div>
+                  <div className="text-2xl sm:text-3xl font-black mt-2 text-slate-200">₹249</div>
+                  <div className="text-slate-400 text-xs sm:text-sm mt-1">20 Minutes</div>
+                </div>
+                <div className="mt-5 h-2 bg-white/10 rounded-full overflow-hidden w-full">
+                  <div className="h-full w-[10%] bg-red-400/80 rounded-full" />
+                </div>
+              </div>
+
+              {/* Oryn */}
+              <div className="bg-orange-500/[0.06] border border-orange-500/20 rounded-3xl p-5 text-center flex flex-col items-center justify-between">
+                <div>
+                  {/* Brand Logo Wrapper */}
+                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center p-2 mb-3 shadow-lg shadow-orange-500/10">
+                    <img src="/logo.png" alt="Oryn" className="w-full h-full object-contain" />
+                  </div>
+                  <div className="font-black text-lg sm:text-xl text-orange-400">Oryn</div>
+                  <div className="text-2xl sm:text-3xl font-black mt-2 text-orange-500">₹249</div>
+                  <div className="text-orange-300 text-xs sm:text-sm mt-1">180 Days</div>
+                </div>
+                <div className="mt-5 h-2 bg-white/10 rounded-full overflow-hidden w-full">
+                  <div className="h-full w-full bg-gradient-to-r from-orange-500 to-amber-500 rounded-full" />
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center mt-7">
+              <h3 className="text-xl sm:text-2xl font-black text-slate-100 leading-tight">
+                One disappears in minutes.
+              </h3>
+              <h3 className="text-xl sm:text-2xl font-black text-orange-400 mt-1 leading-tight">
+                One stays with you every day.
+              </h3>
+              <p className="text-slate-400 mt-4 text-xs sm:text-sm leading-relaxed">
+                The cost is the same.<br />
+                The outcome isn't.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
 
