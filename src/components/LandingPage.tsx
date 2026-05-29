@@ -955,18 +955,22 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-5 text-slate-900 flex flex-col justify-between shadow-lg shadow-slate-200/30 border border-slate-200/60"
+              className="bg-orange-50/80 border border-orange-200/80 rounded-2xl p-5 text-slate-900 relative flex flex-col justify-between scale-[1.03] active:scale-100 transition-all"
+              style={{ boxShadow: '0 10px 30px -10px rgba(249,115,22,0.15)' }}
             >
-              <div>
-                <div className="text-xs uppercase tracking-wider font-bold text-slate-400">Monthly</div>
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-[10px] px-3 py-1 rounded-full font-black tracking-wider shadow-sm uppercase whitespace-nowrap">
+                MOST POPULAR
+              </div>
+              <div className="mt-2">
+                <div className="text-xs uppercase tracking-wider font-bold text-orange-600">Monthly</div>
                 <div className="text-4xl font-black mt-3 text-slate-900">₹99</div>
                 <div className="text-slate-400 text-sm mt-0.5">per month</div>
               </div>
               <div>
-                <div className="mt-4 bg-slate-50 border border-slate-100 rounded-2xl p-2 text-center text-[10px] sm:text-xs font-semibold text-slate-600">
+                <div className="mt-4 bg-orange-100/40 border border-orange-200/30 rounded-2xl p-2 text-center text-[10px] sm:text-xs font-semibold text-orange-700 leading-snug">
                   Less than ₹4/day
                 </div>
-                <button onClick={onEnter} className="mt-4 w-full h-11 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-white rounded-2xl font-bold text-sm transition-all active:scale-95 cursor-pointer">
+                <button onClick={onEnter} className="mt-4 w-full h-11 flex items-center justify-center bg-gradient-to-r from-orange-400 to-amber-400 hover:from-orange-500 hover:to-amber-500 text-white rounded-2xl font-bold text-sm transition-all active:scale-95 cursor-pointer shadow-md shadow-orange-400/20">
                   Start Today
                 </button>
               </div>
@@ -978,22 +982,18 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="bg-orange-50/80 border border-orange-200/80 rounded-2xl p-5 text-slate-900 relative flex flex-col justify-between scale-[1.03] active:scale-100 transition-all"
-              style={{ boxShadow: '0 10px 30px -10px rgba(249,115,22,0.15)' }}
+              className="bg-white rounded-2xl p-5 text-slate-900 flex flex-col justify-between shadow-lg shadow-slate-200/30 border border-slate-200/60"
             >
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-[10px] px-3 py-1 rounded-full font-black tracking-wider shadow-sm uppercase whitespace-nowrap">
-                MOST POPULAR
-              </div>
-              <div className="mt-2">
-                <div className="text-xs uppercase tracking-wider font-bold text-orange-600">6 Months</div>
+              <div>
+                <div className="text-xs uppercase tracking-wider font-bold text-slate-400">6 Months</div>
                 <div className="text-4xl font-black mt-3 text-slate-900">₹249</div>
                 <div className="text-slate-400 text-sm mt-0.5">Only ₹41/month</div>
               </div>
               <div>
-                <div className="mt-4 bg-orange-100/40 border border-orange-200/30 rounded-2xl p-2 text-center text-[10px] sm:text-xs font-semibold text-orange-700 leading-snug">
+                <div className="mt-4 bg-slate-50 border border-slate-100 rounded-2xl p-2 text-center text-[10px] sm:text-xs font-semibold text-slate-600">
                   Stay long enough to see real change
                 </div>
-                <button onClick={onEnter} className="mt-4 w-full h-11 flex items-center justify-center bg-gradient-to-r from-orange-400 to-amber-400 hover:from-orange-500 hover:to-amber-500 text-white rounded-2xl font-bold text-sm transition-all active:scale-95 cursor-pointer shadow-md shadow-orange-400/20">
+                <button onClick={onEnter} className="mt-4 w-full h-11 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-white rounded-2xl font-bold text-sm transition-all active:scale-95 cursor-pointer">
                   Stay Consistent
                 </button>
               </div>
