@@ -909,14 +909,14 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4 text-slate-900">Loved by <span className="text-orange-500">high performers</span>.</h2>
             <p className="text-slate-500 text-lg">Real results from real users.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto overflow-y-hidden pb-6 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 lg:mx-0 lg:px-0">
             {[
               { quote: "Oryn replaced Notion, Todoist, and my physical journal. I've completed more goals in 3 months than in the last 2 years combined.", author: "Sarah Jenkins", role: "Product Manager at Stripe", metric: "12 goals completed" },
               { quote: "The Focus Mode alone saved me 2+ hours daily. It's not a task manager — it's an operating system for ambitious people.", author: "David Martinez", role: "Senior Engineer at Google", metric: "2h+ saved daily" },
               { quote: "42-day streak and counting. The visual habit tracker makes consistency feel like a game I actually want to win.", author: "Elena Rostova", role: "Freelance Designer", metric: "42-day streak" }
             ].map((t, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="bg-slate-50 border border-slate-200 rounded-3xl p-8 flex flex-col hover:shadow-md transition-shadow">
+                className="bg-slate-50 border border-slate-200 rounded-3xl p-8 flex flex-col hover:shadow-md transition-shadow w-[85vw] sm:w-[45vw] md:w-auto snap-center shrink-0">
                 <div className="flex gap-1 text-orange-400 mb-4">
                   {[...Array(5)].map((_,j) => <Star key={j} size={14} fill="currentColor" />)}
                 </div>
