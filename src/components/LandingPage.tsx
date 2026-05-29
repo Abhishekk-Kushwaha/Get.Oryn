@@ -753,42 +753,44 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               className="flex md:flex-col items-center justify-center h-8 md:h-auto w-full md:w-auto"
             >
               {/* Desktop arrow (horizontal) */}
-              <div className="hidden md:flex items-center w-full relative px-1">
-                <div className="flex-1 border-t border-dashed border-slate-300" />
-                <motion.div 
-                  className="absolute w-1.5 h-1.5 rounded-full bg-slate-400/50"
-                  animate={{ left: ["10%", "85%"] }}
-                  transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-                  style={{ top: '50%', y: '-50%' }}
-                />
-                <motion.span 
-                  animate={{ x: [0, 3, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                  className="text-slate-300 text-sm leading-none font-bold ml-0.5"
-                >
-                  ›
-                </motion.span>
+              <div className="hidden md:flex items-center justify-center w-full px-1">
+                <svg className="w-full h-4 text-slate-300" viewBox="0 0 36 16" fill="none">
+                  {/* Dashed flow line */}
+                  <line x1="2" y1="8" x2="28" y2="8" stroke="#cbd5e1" strokeWidth="1.5" strokeDasharray="3 3" />
+                  {/* Arrowhead */}
+                  <path d="M26 4.5l4 3.5-4 3.5" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  {/* Flowing particle */}
+                  <motion.circle 
+                    cx="2" 
+                    cy="8" 
+                    r="1.75" 
+                    fill="#94a3b8" 
+                    animate={{ cx: [2, 28] }}
+                    transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                  />
+                </svg>
               </div>
               {/* Mobile arrow (vertical) */}
-              <div className="flex md:hidden flex-col items-center h-8 justify-center relative w-6">
-                <div className="h-6 border-l border-dashed border-slate-300" />
-                <motion.div 
-                  className="absolute w-1.5 h-1.5 rounded-full bg-slate-400/50"
-                  animate={{ top: ["15%", "75%"] }}
-                  transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-                  style={{ left: '50%', x: '-50%' }}
-                />
-                <motion.span 
-                  animate={{ y: [0, 3, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                  className="text-slate-300 text-sm leading-none font-bold rotate-90 -mt-1"
-                >
-                  ›
-                </motion.span>
+              <div className="flex md:hidden items-center justify-center w-6 h-8">
+                <svg className="w-4 h-8 text-slate-300" viewBox="0 0 16 32" fill="none">
+                  {/* Dashed flow line */}
+                  <line x1="8" y1="2" x2="8" y2="24" stroke="#cbd5e1" strokeWidth="1.5" strokeDasharray="3 3" />
+                  {/* Arrowhead */}
+                  <path d="M4.5 22l3.5 4 3.5-4" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  {/* Flowing particle */}
+                  <motion.circle 
+                    cx="8" 
+                    cy="2" 
+                    r="1.75" 
+                    fill="#94a3b8" 
+                    animate={{ cy: [2, 24] }}
+                    transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                  />
+                </svg>
               </div>
             </motion.div>
 
-            {/* ═══ CENTER — Oryn Logo + Glow ═══ */}
+            {/* ═══ CENTER — Oryn Logo (Clean) ═══ */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -797,14 +799,8 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               className="flex flex-col items-center px-4 py-2 md:py-0"
             >
               <div className="relative">
-                {/* Outer glow */}
-                <div className="absolute -inset-6 md:-inset-12 rounded-full bg-gradient-to-br from-orange-400/20 to-amber-300/20 blur-2xl hero-glow pointer-events-none" />
-                {/* Concentric rings */}
-                <div className="absolute -inset-4 md:-inset-7 rounded-full border border-orange-400/10" />
-                <div className="absolute -inset-2.5 md:-inset-5 rounded-full border border-orange-400/20" />
-                <div className="absolute -inset-1 md:-inset-3 rounded-full border border-orange-400/35" />
-                {/* Real Oryn Logo Circle */}
-                <div className="relative w-20 h-20 md:w-28 md:h-28 rounded-full bg-white flex items-center justify-center shadow-2xl shadow-orange-500/25 p-4.5 md:p-6 border border-orange-100/50">
+                {/* Real Oryn Logo Circle — No Glow or concentric rings */}
+                <div className="relative w-20 h-20 md:w-28 md:h-28 rounded-full bg-white flex items-center justify-center shadow-lg shadow-slate-200/50 p-4.5 md:p-6 border border-slate-100/80">
                   <img src="/logo.png" alt="Oryn Logo" className="w-full h-full object-contain" />
                 </div>
               </div>
@@ -823,38 +819,52 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               className="flex md:flex-col items-center justify-center h-8 md:h-auto w-full md:w-auto"
             >
               {/* Desktop arrow (horizontal) */}
-              <div className="hidden md:flex items-center w-full relative px-1">
-                <div className="flex-1 h-0.5 bg-gradient-to-r from-orange-400 to-amber-400 rounded-full" />
-                <motion.div 
-                  className="absolute w-1.5 h-1.5 rounded-full bg-orange-500 shadow-sm shadow-orange-500/50"
-                  animate={{ left: ["10%", "85%"] }}
-                  transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-                  style={{ top: '50%', y: '-50%' }}
-                />
-                <motion.span 
-                  animate={{ x: [0, 3, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                  className="text-orange-500 text-sm leading-none font-black ml-0.5"
-                >
-                  ›
-                </motion.span>
+              <div className="hidden md:flex items-center justify-center w-full px-1">
+                <svg className="w-full h-4" viewBox="0 0 36 16" fill="none">
+                  <defs>
+                    <linearGradient id="orangeGradH" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="#fb923c" />
+                      <stop offset="100%" stopColor="#f97316" />
+                    </linearGradient>
+                  </defs>
+                  {/* Solid gradient flow line */}
+                  <line x1="2" y1="8" x2="28" y2="8" stroke="url(#orangeGradH)" strokeWidth="2" strokeLinecap="round" />
+                  {/* Arrowhead */}
+                  <path d="M26 4.5l4 3.5-4 3.5" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  {/* Flowing particle */}
+                  <motion.circle 
+                    cx="2" 
+                    cy="8" 
+                    r="2" 
+                    fill="#ea580c" 
+                    animate={{ cx: [2, 28] }}
+                    transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                  />
+                </svg>
               </div>
               {/* Mobile arrow (vertical) */}
-              <div className="flex md:hidden flex-col items-center h-8 justify-center relative w-6">
-                <div className="h-6 w-0.5 bg-gradient-to-b from-orange-400 to-amber-400 rounded-full" />
-                <motion.div 
-                  className="absolute w-1.5 h-1.5 rounded-full bg-orange-500 shadow-sm shadow-orange-500/50"
-                  animate={{ top: ["15%", "75%"] }}
-                  transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-                  style={{ left: '50%', x: '-50%' }}
-                />
-                <motion.span 
-                  animate={{ y: [0, 3, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                  className="text-orange-500 text-sm leading-none font-black rotate-90 -mt-1"
-                >
-                  ›
-                </motion.span>
+              <div className="flex md:hidden items-center justify-center w-6 h-8">
+                <svg className="w-4 h-8" viewBox="0 0 16 32" fill="none">
+                  <defs>
+                    <linearGradient id="orangeGradV" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#fb923c" />
+                      <stop offset="100%" stopColor="#f97316" />
+                    </linearGradient>
+                  </defs>
+                  {/* Solid gradient flow line */}
+                  <line x1="8" y1="2" x2="8" y2="24" stroke="url(#orangeGradV)" strokeWidth="2" strokeLinecap="round" />
+                  {/* Arrowhead */}
+                  <path d="M4.5 22l3.5 4 3.5-4" stroke="#f97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  {/* Flowing particle */}
+                  <motion.circle 
+                    cx="8" 
+                    cy="2" 
+                    r="2" 
+                    fill="#ea580c" 
+                    animate={{ cy: [2, 24] }}
+                    transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                  />
+                </svg>
               </div>
             </motion.div>
 
