@@ -978,22 +978,22 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="bg-gradient-to-b from-orange-500 to-orange-600 rounded-2xl p-5 text-white relative flex flex-col justify-between scale-[1.03] active:scale-100 transition-transform"
-              style={{ boxShadow: '0 0 50px rgba(249,115,22,0.25)' }}
+              className="bg-orange-50/80 border border-orange-200/80 rounded-2xl p-5 text-slate-900 relative flex flex-col justify-between scale-[1.03] active:scale-100 transition-all"
+              style={{ boxShadow: '0 10px 30px -10px rgba(249,115,22,0.15)' }}
             >
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-white text-orange-600 text-[10px] px-3 py-1 rounded-full font-black tracking-wider shadow-md uppercase whitespace-nowrap border border-orange-100">
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-[10px] px-3 py-1 rounded-full font-black tracking-wider shadow-sm uppercase whitespace-nowrap">
                 MOST POPULAR
               </div>
               <div className="mt-2">
-                <div className="text-xs uppercase tracking-wider font-bold text-orange-100">6 Months</div>
-                <div className="text-4xl font-black mt-3 text-white">₹249</div>
-                <div className="text-orange-100 text-sm mt-0.5">Only ₹41/month</div>
+                <div className="text-xs uppercase tracking-wider font-bold text-orange-600">6 Months</div>
+                <div className="text-4xl font-black mt-3 text-slate-900">₹249</div>
+                <div className="text-slate-400 text-sm mt-0.5">Only ₹41/month</div>
               </div>
               <div>
-                <div className="mt-4 bg-white/15 rounded-2xl p-2 text-center text-[10px] sm:text-xs font-semibold leading-snug">
+                <div className="mt-4 bg-orange-100/40 border border-orange-200/30 rounded-2xl p-2 text-center text-[10px] sm:text-xs font-semibold text-orange-700 leading-snug">
                   Stay long enough to see real change
                 </div>
-                <button onClick={onEnter} className="mt-4 w-full bg-white hover:bg-orange-50 text-orange-600 rounded-2xl py-3 font-black text-sm transition-all active:scale-95 cursor-pointer shadow-md shadow-orange-700/10">
+                <button onClick={onEnter} className="mt-4 w-full bg-orange-500 hover:bg-orange-600 text-white rounded-2xl py-3 font-black text-sm transition-all active:scale-95 cursor-pointer shadow-md shadow-orange-500/20">
                   Stay Consistent
                 </button>
               </div>
