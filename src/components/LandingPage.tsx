@@ -938,14 +938,14 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </div>
 
       {/* ═══════════ PRICING ═══════════ */}
-      <div id="pricing" className="bg-[#09090b] py-20 md:py-28 border-t border-zinc-900 relative overflow-hidden">
+      <div id="pricing" className="bg-slate-50 py-20 md:py-28 border-t border-slate-200/80 relative overflow-hidden">
         {/* Subtle dot grid in background */}
-        <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         
         <div className="max-w-md md:max-w-xl mx-auto px-6 w-full relative z-10">
           <div className="text-center mb-10">
-            <h2 className="text-4xl font-black text-white tracking-tight">Choose Consistency</h2>
-            <p className="text-slate-400 mt-2">Not another subscription.</p>
+            <h2 className="text-4xl font-black text-slate-900 tracking-tight">Choose Consistency</h2>
+            <p className="text-slate-500 mt-2">Not another subscription.</p>
           </div>
 
           {/* Pricing Cards */}
@@ -955,15 +955,15 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white rounded-3xl p-5 text-slate-900 flex flex-col justify-between shadow-xl"
+              className="bg-white rounded-3xl p-5 text-slate-900 flex flex-col justify-between shadow-lg shadow-slate-200/30 border border-slate-200/60"
             >
               <div>
-                <div className="text-xs uppercase tracking-wider font-bold text-slate-500">Monthly</div>
+                <div className="text-xs uppercase tracking-wider font-bold text-slate-400">Monthly</div>
                 <div className="text-4xl font-black mt-3 text-slate-900">₹99</div>
                 <div className="text-slate-400 text-sm mt-0.5">per month</div>
               </div>
               <div>
-                <div className="mt-4 bg-slate-100 rounded-2xl p-2 text-center text-[10px] sm:text-xs font-semibold text-slate-700">
+                <div className="mt-4 bg-slate-50 border border-slate-100 rounded-2xl p-2 text-center text-[10px] sm:text-xs font-semibold text-slate-600">
                   Less than ₹4/day
                 </div>
                 <button onClick={onEnter} className="mt-4 w-full bg-black hover:bg-slate-900 text-white rounded-2xl py-3 font-bold text-sm transition-all active:scale-95 cursor-pointer">
@@ -1006,53 +1006,53 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-6 bg-[#121214] border border-white/[0.06] rounded-[32px] p-5 sm:p-7 text-white overflow-hidden shadow-2xl"
+            className="mt-6 bg-white border border-slate-200/80 rounded-[32px] p-5 sm:p-7 text-slate-900 overflow-hidden shadow-xl shadow-slate-200/40"
           >
             <div className="text-center mb-6">
-              <span className="inline-flex items-center gap-2 bg-white/5 border border-white/[0.04] px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-slate-200">
+              <span className="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-slate-700">
                 🍕 Same Price. Different Outcome.
               </span>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               {/* Pizza */}
-              <div className="bg-white/5 border border-white/[0.03] rounded-3xl p-5 text-center flex flex-col items-center justify-between">
+              <div className="bg-slate-50 border border-slate-200/60 rounded-3xl p-5 text-center flex flex-col items-center justify-between">
                 <div>
                   <div className="text-5xl mb-3 animate-bounce" style={{ animationDuration: '3s' }}>🍕</div>
-                  <div className="font-black text-lg sm:text-xl text-slate-100">Pizza</div>
-                  <div className="text-2xl sm:text-3xl font-black mt-2 text-slate-200">₹249</div>
+                  <div className="font-black text-lg sm:text-xl text-slate-800">Pizza</div>
+                  <div className="text-2xl sm:text-3xl font-black mt-2 text-slate-900">₹249</div>
                   <div className="text-slate-400 text-xs sm:text-sm mt-1">20 Minutes</div>
                 </div>
-                <div className="mt-5 h-2 bg-white/10 rounded-full overflow-hidden w-full">
-                  <div className="h-full w-[10%] bg-red-400/80 rounded-full" />
+                <div className="mt-5 h-2 bg-slate-200 rounded-full overflow-hidden w-full">
+                  <div className="h-full w-[10%] bg-red-500 rounded-full" />
                 </div>
               </div>
 
               {/* Oryn */}
-              <div className="bg-orange-500/[0.06] border border-orange-500/20 rounded-3xl p-5 text-center flex flex-col items-center justify-between">
+              <div className="bg-orange-500/[0.04] border border-orange-500/20 rounded-3xl p-5 text-center flex flex-col items-center justify-between">
                 <div>
                   {/* Brand Logo Wrapper */}
-                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center p-2 mb-3 shadow-lg shadow-orange-500/10">
+                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center p-2 mb-3 shadow-lg shadow-orange-500/10 border border-orange-100">
                     <img src="/logo.png" alt="Oryn" className="w-full h-full object-contain" />
                   </div>
-                  <div className="font-black text-lg sm:text-xl text-orange-400">Oryn</div>
-                  <div className="text-2xl sm:text-3xl font-black mt-2 text-orange-500">₹249</div>
-                  <div className="text-orange-300 text-xs sm:text-sm mt-1">180 Days</div>
+                  <div className="font-black text-lg sm:text-xl text-orange-600">Oryn</div>
+                  <div className="text-2xl sm:text-3xl font-black mt-2 text-orange-600">₹249</div>
+                  <div className="text-orange-500 text-xs sm:text-sm mt-1">180 Days</div>
                 </div>
-                <div className="mt-5 h-2 bg-white/10 rounded-full overflow-hidden w-full">
+                <div className="mt-5 h-2 bg-orange-100/65 rounded-full overflow-hidden w-full">
                   <div className="h-full w-full bg-gradient-to-r from-orange-500 to-amber-500 rounded-full" />
                 </div>
               </div>
             </div>
 
             <div className="text-center mt-7">
-              <h3 className="text-xl sm:text-2xl font-black text-slate-100 leading-tight">
+              <h3 className="text-xl sm:text-2xl font-black text-slate-800 leading-tight">
                 One disappears in minutes.
               </h3>
-              <h3 className="text-xl sm:text-2xl font-black text-orange-400 mt-1 leading-tight">
+              <h3 className="text-xl sm:text-2xl font-black text-orange-600 mt-1 leading-tight">
                 One stays with you every day.
               </h3>
-              <p className="text-slate-400 mt-4 text-xs sm:text-sm leading-relaxed">
+              <p className="text-slate-500 mt-4 text-xs sm:text-sm leading-relaxed">
                 The cost is the same.<br />
                 The outcome isn't.
               </p>
