@@ -753,14 +753,38 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               className="flex md:flex-col items-center justify-center h-8 md:h-auto w-full md:w-auto"
             >
               {/* Desktop arrow (horizontal) */}
-              <div className="hidden md:flex items-center w-full">
+              <div className="hidden md:flex items-center w-full relative px-1">
                 <div className="flex-1 border-t border-dashed border-slate-300" />
-                <span className="text-slate-300 text-sm leading-none font-bold">›</span>
+                <motion.div 
+                  className="absolute w-1.5 h-1.5 rounded-full bg-slate-400/50"
+                  animate={{ left: ["10%", "85%"] }}
+                  transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                  style={{ top: '50%', y: '-50%' }}
+                />
+                <motion.span 
+                  animate={{ x: [0, 3, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                  className="text-slate-300 text-sm leading-none font-bold ml-0.5"
+                >
+                  ›
+                </motion.span>
               </div>
               {/* Mobile arrow (vertical) */}
-              <div className="flex md:hidden flex-col items-center h-8 justify-center">
+              <div className="flex md:hidden flex-col items-center h-8 justify-center relative w-6">
                 <div className="h-6 border-l border-dashed border-slate-300" />
-                <span className="text-slate-300 text-sm leading-none font-bold rotate-90 -mt-1">›</span>
+                <motion.div 
+                  className="absolute w-1.5 h-1.5 rounded-full bg-slate-400/50"
+                  animate={{ top: ["15%", "75%"] }}
+                  transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                  style={{ left: '50%', x: '-50%' }}
+                />
+                <motion.span 
+                  animate={{ y: [0, 3, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                  className="text-slate-300 text-sm leading-none font-bold rotate-90 -mt-1"
+                >
+                  ›
+                </motion.span>
               </div>
             </motion.div>
 
@@ -779,9 +803,9 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
                 <div className="absolute -inset-4 md:-inset-7 rounded-full border border-orange-400/10" />
                 <div className="absolute -inset-2.5 md:-inset-5 rounded-full border border-orange-400/20" />
                 <div className="absolute -inset-1 md:-inset-3 rounded-full border border-orange-400/35" />
-                {/* Logo circle */}
-                <div className="relative w-20 h-20 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-2xl shadow-orange-500/35">
-                  <span className="text-white font-black text-lg md:text-2xl tracking-tight select-none">O</span>
+                {/* Real Oryn Logo Circle */}
+                <div className="relative w-20 h-20 md:w-28 md:h-28 rounded-full bg-white flex items-center justify-center shadow-2xl shadow-orange-500/25 p-4.5 md:p-6 border border-orange-100/50">
+                  <img src="/logo.png" alt="Oryn Logo" className="w-full h-full object-contain" />
                 </div>
               </div>
               <div className="mt-3 md:mt-4 text-center">
@@ -799,14 +823,38 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               className="flex md:flex-col items-center justify-center h-8 md:h-auto w-full md:w-auto"
             >
               {/* Desktop arrow (horizontal) */}
-              <div className="hidden md:flex items-center w-full">
+              <div className="hidden md:flex items-center w-full relative px-1">
                 <div className="flex-1 h-0.5 bg-gradient-to-r from-orange-400 to-amber-400 rounded-full" />
-                <span className="text-orange-500 text-sm leading-none font-black">›</span>
+                <motion.div 
+                  className="absolute w-1.5 h-1.5 rounded-full bg-orange-500 shadow-sm shadow-orange-500/50"
+                  animate={{ left: ["10%", "85%"] }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                  style={{ top: '50%', y: '-50%' }}
+                />
+                <motion.span 
+                  animate={{ x: [0, 3, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                  className="text-orange-500 text-sm leading-none font-black ml-0.5"
+                >
+                  ›
+                </motion.span>
               </div>
               {/* Mobile arrow (vertical) */}
-              <div className="flex md:hidden flex-col items-center h-8 justify-center">
+              <div className="flex md:hidden flex-col items-center h-8 justify-center relative w-6">
                 <div className="h-6 w-0.5 bg-gradient-to-b from-orange-400 to-amber-400 rounded-full" />
-                <span className="text-orange-500 text-sm leading-none font-black rotate-90 -mt-1">›</span>
+                <motion.div 
+                  className="absolute w-1.5 h-1.5 rounded-full bg-orange-500 shadow-sm shadow-orange-500/50"
+                  animate={{ top: ["15%", "75%"] }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                  style={{ left: '50%', x: '-50%' }}
+                />
+                <motion.span 
+                  animate={{ y: [0, 3, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                  className="text-orange-500 text-sm leading-none font-black rotate-90 -mt-1"
+                >
+                  ›
+                </motion.span>
               </div>
             </motion.div>
 
