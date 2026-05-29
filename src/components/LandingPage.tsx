@@ -653,71 +653,50 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
 
       {/* ═══════════ MID-PAGE CTA ═══════════ */}
-      <div className="bg-slate-50/70 border-y border-slate-200/80 py-20 md:py-28 text-center relative overflow-hidden">
-        {/* Dot grid pattern with radial mask */}
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #94a3b8 1.5px, transparent 0)', backgroundSize: '24px 24px' }} />
+      <div className="bg-slate-950 border-y border-slate-900 py-20 text-center relative overflow-hidden">
+        {/* Animated ambient background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-br from-orange-600/15 via-amber-500/5 to-transparent blur-3xl rounded-full pointer-events-none" />
+        {/* Subtle grid backdrop */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)', backgroundSize: '24px 24px' }} />
         
-        {/* Soft, blurred decorative glow circles */}
-        <div className="absolute -left-20 top-0 w-80 h-80 rounded-full bg-orange-200/10 blur-3xl pointer-events-none" />
-        <div className="absolute -right-20 bottom-0 w-80 h-80 rounded-full bg-rose-200/10 blur-3xl pointer-events-none" />
-
-        {/* Floating Mock Card 1 (Left) */}
-        <motion.div
-          animate={{ y: [0, -10, 0] }}
-          transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-          className="absolute left-[8%] top-[25%] hidden lg:flex items-center gap-3 bg-white/90 backdrop-blur-md border border-slate-200/40 rounded-2xl p-3 shadow-md rotate-[-6deg] select-none"
-        >
-          <div className="w-8 h-8 rounded-xl bg-orange-100 flex items-center justify-center text-orange-600">
-            <Flame size={16} />
-          </div>
-          <div className="text-left">
-            <div className="text-[11px] font-bold text-slate-800">Daily Habit</div>
-            <div className="text-[9px] text-orange-600 font-extrabold">12 day streak</div>
-          </div>
-        </motion.div>
-
-        {/* Floating Mock Card 2 (Right) */}
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-          className="absolute right-[8%] bottom-[25%] hidden lg:flex items-center gap-3 bg-white/90 backdrop-blur-md border border-slate-200/40 rounded-2xl p-3 shadow-md rotate-[6deg] select-none"
-        >
-          <div className="w-8 h-8 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600">
-            <CheckCircle2 size={16} />
-          </div>
-          <div className="text-left">
-            <div className="text-[11px] font-bold text-slate-800">Consistency</div>
-            <div className="text-[9px] text-emerald-600 font-extrabold">100% Complete</div>
-          </div>
-        </motion.div>
-
-        <div className="relative z-10 max-w-3xl mx-auto px-6">
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-5 leading-tight tracking-tight">
-            Stop planning to plan.<br className="sm:hidden" />{' '}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-600 via-amber-500 to-orange-500">
-              Start becoming.
-            </span>
-          </h3>
-          <p className="text-slate-500 text-base md:text-[1.15rem] leading-relaxed mb-8 max-w-md mx-auto">
-            Your goals don't need more motivation.<br className="hidden sm:inline" /> They need <span className="text-orange-500 font-bold">consistency</span>.
-          </p>
-          <motion.button 
-            onClick={onEnter} 
-            whileHover={{ scale: 1.03, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            className="relative group px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold rounded-full shadow-xl shadow-orange-500/25 transition-all inline-flex items-center gap-2 overflow-hidden cursor-pointer"
+        <div className="relative z-10 max-w-2xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            {/* Button hover white tint */}
-            <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-            <span className="relative z-10">Try Oryn</span>
-            <motion.span 
-              animate={{ x: [0, 4, 0] }}
-              transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
-              className="relative z-10"
+            {/* Accent badge */}
+            <span className="inline-flex items-center gap-1.5 text-orange-400 text-[10px] font-extrabold uppercase tracking-[0.2em] bg-orange-500/10 border border-orange-500/20 px-3.5 py-1 rounded-full mb-6">
+              <Sparkles size={11} className="animate-pulse" /> Consistency is Key
+            </span>
+
+            <h3 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight leading-tight">
+              Stop planning to plan.<br />
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500">Start becoming.</span>
+            </h3>
+            
+            <p className="text-slate-400 text-sm md:text-base mb-8 max-w-md mx-auto leading-relaxed">
+              Your goals don't need more motivation.<br className="hidden sm:inline" /> They need consistency.
+            </p>
+
+            {/* Premium Interactive Button */}
+            <button 
+              onClick={onEnter} 
+              className="group relative inline-flex items-center justify-center p-0.5 rounded-full overflow-hidden font-bold tracking-tight transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] hover:shadow-[0_0_30px_rgba(249,115,22,0.3)] cursor-pointer"
             >
-              <ArrowRight size={18} />
-            </motion.span>
-          </motion.button>
+              {/* Spinning gradient border beam on hover */}
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-500 via-amber-400 to-orange-600 rounded-full" />
+              
+              {/* Inner button container */}
+              <span className="relative px-8 py-3.5 rounded-full bg-slate-900 text-white transition-all duration-300 group-hover:bg-slate-950 flex items-center gap-2">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-orange-200">
+                  Try Oryn
+                </span>
+                <ArrowRight size={16} className="text-orange-400 transform group-hover:translate-x-1.5 transition-transform duration-300" />
+              </span>
+            </button>
+          </motion.div>
         </div>
       </div>
 
