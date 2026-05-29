@@ -993,7 +993,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
                 <div className="mt-4 bg-orange-100/40 border border-orange-200/30 rounded-2xl p-2 text-center text-[10px] sm:text-xs font-semibold text-orange-700 leading-snug">
                   Stay long enough to see real change
                 </div>
-                <button onClick={onEnter} className="mt-4 w-full h-11 flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white rounded-2xl font-bold text-sm transition-all active:scale-95 cursor-pointer shadow-md shadow-orange-500/20">
+                <button onClick={onEnter} className="mt-4 w-full h-11 flex items-center justify-center bg-gradient-to-r from-orange-400 to-amber-400 hover:from-orange-500 hover:to-amber-500 text-white rounded-2xl font-bold text-sm transition-all active:scale-95 cursor-pointer shadow-md shadow-orange-400/20">
                   Stay Consistent
                 </button>
               </div>
