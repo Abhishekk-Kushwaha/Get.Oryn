@@ -656,7 +656,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       <div className="bg-slate-50 border-y border-slate-200/80 py-16 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-orange-500/[0.04] to-amber-500/[0.04]" />
         <div className="relative z-10 max-w-2xl mx-auto px-6">
-          <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4">Stop planning to plan. Start becoming.</h3>
+          <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4">Stop planning to plan. Start executing.</h3>
           <p className="text-slate-500 mb-6">Your goals don't need more motivation. They need consistency.</p>
           <button onClick={onEnter} className="px-6 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-bold rounded-2xl shadow-md shadow-orange-500/20 hover:scale-[1.02] active:scale-95 transition-all inline-flex items-center gap-1.5 cursor-pointer">
             Try Oryn <ArrowRight size={16} />
