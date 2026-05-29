@@ -699,20 +699,20 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
             </p>
           </motion.div>
 
-          {/* 5-Column Visual: [Left Panel] [Arrow] [Center] [Arrow] [Right Panel] */}
-          <div className="grid grid-cols-[1fr_12px_auto_12px_1fr] sm:grid-cols-[1fr_20px_auto_20px_1fr] md:grid-cols-[1fr_36px_auto_36px_1fr] items-center max-w-5xl mx-auto gap-y-0">
+          {/* 5-Column Visual: Stacked on mobile, 5 columns on md and up */}
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_36px_auto_36px_1fr] items-center max-w-md md:max-w-5xl mx-auto gap-4 md:gap-0 px-4 md:px-0">
 
             {/* ═══ LEFT PANEL — Fragmented ═══ */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-gradient-to-br from-red-50/70 to-slate-50/40 rounded-xl sm:rounded-2xl md:rounded-3xl border border-red-200/30 p-2 sm:p-3.5 md:p-6"
+              className="bg-gradient-to-br from-red-50/70 to-slate-50/40 rounded-2xl md:rounded-3xl border border-red-200/30 p-5 md:p-6 w-full"
             >
-              <div className="text-[7px] sm:text-[8px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-red-400/80 mb-1.5 md:mb-3 text-center">Your tools today</div>
+              <div className="text-xs md:text-[10px] lg:text-xs font-bold uppercase tracking-[0.15em] text-red-400/80 mb-3 text-center">Your tools today</div>
 
-              <div className="flex flex-col gap-1 sm:gap-1.5 md:gap-2">
+              <div className="flex flex-col gap-2 md:gap-1.5 lg:gap-2">
                 {[
                   { icon: '🎯', label: 'Goal Tracking', sub: 'No clarity', rot: -2 },
                   { icon: '✅', label: 'Tasks', sub: 'Lost in lists', rot: 1.5 },
@@ -722,93 +722,105 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
                 ].map((item, i) => (
                   <motion.div
                     key={item.label}
-                    initial={{ opacity: 0, x: -8 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.15 + i * 0.05 }}
-                    className="flex items-center gap-1 sm:gap-1.5 md:gap-2 bg-white/70 border border-dashed border-red-200/40 rounded-md sm:rounded-lg md:rounded-xl px-1.5 py-1 sm:px-2 sm:py-1.5 md:px-3 md:py-2"
+                    className="flex items-center gap-2 md:gap-1.5 lg:gap-2 bg-white/70 border border-dashed border-red-200/40 rounded-xl md:rounded-lg lg:rounded-xl px-3 py-2 md:px-2 md:py-1.5 lg:px-3 lg:py-2"
                     style={{ transform: `rotate(${item.rot}deg)` }}
                   >
-                    <span className="text-[9px] sm:text-[11px] md:text-sm leading-none shrink-0">{item.icon}</span>
+                    <span className="text-sm md:text-[11px] lg:text-sm leading-none shrink-0">{item.icon}</span>
                     <div className="flex-1 min-w-0">
-                      <span className="text-[7px] sm:text-[8px] md:text-[11px] font-semibold text-slate-500 block truncate">{item.label}</span>
-                      <span className="text-[6px] sm:text-[7px] md:text-[9px] text-red-300 block truncate">{item.sub}</span>
+                      <span className="text-xs md:text-[8px] lg:text-[11px] font-semibold text-slate-500 block truncate">{item.label}</span>
+                      <span className="text-[10px] md:text-[7px] lg:text-[9px] text-red-300 block truncate">{item.sub}</span>
                     </div>
-                    <X size={8} className="text-red-300/70 shrink-0 w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3" />
+                    <X className="text-red-300/70 shrink-0 w-3.5 h-3.5 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3" />
                   </motion.div>
                 ))}
               </div>
 
-              <div className="text-[6px] sm:text-[7px] md:text-[9px] text-red-400/60 font-bold mt-1.5 md:mt-3 text-center flex items-center justify-center gap-0.5">
-                <X size={7} className="sm:w-2 sm:h-2 md:w-3 md:h-3" /> 5 apps · 0 connection
+              <div className="text-[10px] md:text-[7px] lg:text-[9px] text-red-400/60 font-bold mt-3 md:mt-1.5 lg:mt-3 text-center flex items-center justify-center gap-0.5">
+                <X className="w-3 h-3 md:w-2 md:h-2 lg:w-2.5 lg:h-2.5" /> 5 apps · 0 connection
               </div>
             </motion.div>
 
-            {/* ─── LEFT ARROW (dashed) ─── */}
+            {/* ─── LEFT ARROW ─── */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="flex items-center justify-center self-center"
+              className="flex md:flex-col items-center justify-center h-8 md:h-auto w-full md:w-auto"
             >
-              <div className="w-full flex items-center">
+              {/* Desktop arrow (horizontal) */}
+              <div className="hidden md:flex items-center w-full">
                 <div className="flex-1 border-t border-dashed border-slate-300" />
-                <span className="text-slate-300 text-[8px] sm:text-[10px] md:text-sm leading-none font-bold">›</span>
+                <span className="text-slate-300 text-sm leading-none font-bold">›</span>
+              </div>
+              {/* Mobile arrow (vertical) */}
+              <div className="flex md:hidden flex-col items-center h-8 justify-center">
+                <div className="h-6 border-l border-dashed border-slate-300" />
+                <span className="text-slate-300 text-sm leading-none font-bold rotate-90 -mt-1">›</span>
               </div>
             </motion.div>
 
             {/* ═══ CENTER — Oryn Logo + Glow ═══ */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.6 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3, type: 'spring', stiffness: 90 }}
-              className="flex flex-col items-center px-0.5 sm:px-2 md:px-4"
+              className="flex flex-col items-center px-4 py-2 md:py-0"
             >
               <div className="relative">
                 {/* Outer glow */}
-                <div className="absolute -inset-5 sm:-inset-7 md:-inset-12 rounded-full bg-gradient-to-br from-orange-400/20 to-amber-300/20 blur-2xl hero-glow pointer-events-none" />
+                <div className="absolute -inset-6 md:-inset-12 rounded-full bg-gradient-to-br from-orange-400/20 to-amber-300/20 blur-2xl hero-glow pointer-events-none" />
                 {/* Concentric rings */}
-                <div className="absolute -inset-3 sm:-inset-5 md:-inset-7 rounded-full border border-orange-400/10" />
-                <div className="absolute -inset-2 sm:-inset-3 md:-inset-5 rounded-full border border-orange-400/20" />
-                <div className="absolute -inset-1 sm:-inset-1.5 md:-inset-3 rounded-full border border-orange-400/35" />
+                <div className="absolute -inset-4 md:-inset-7 rounded-full border border-orange-400/10" />
+                <div className="absolute -inset-2.5 md:-inset-5 rounded-full border border-orange-400/20" />
+                <div className="absolute -inset-1 md:-inset-3 rounded-full border border-orange-400/35" />
                 {/* Logo circle */}
-                <div className="relative w-14 h-14 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-2xl shadow-orange-500/35">
-                  <span className="text-white font-black text-xs sm:text-lg md:text-2xl tracking-tight select-none">O</span>
+                <div className="relative w-20 h-20 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-2xl shadow-orange-500/35">
+                  <span className="text-white font-black text-lg md:text-2xl tracking-tight select-none">O</span>
                 </div>
               </div>
-              <div className="mt-2 sm:mt-3 md:mt-4 text-center">
-                <div className="text-[10px] sm:text-sm md:text-xl font-black text-slate-900 tracking-tight">ORYN</div>
-                <div className="text-[5px] sm:text-[7px] md:text-[10px] font-medium text-slate-400 tracking-wider uppercase whitespace-nowrap">one system</div>
+              <div className="mt-3 md:mt-4 text-center">
+                <div className="text-sm md:text-xl font-black text-slate-900 tracking-tight">ORYN</div>
+                <div className="text-[8px] md:text-[10px] font-medium text-slate-400 tracking-wider uppercase whitespace-nowrap">one system</div>
               </div>
             </motion.div>
 
-            {/* ─── RIGHT ARROW (solid) ─── */}
+            {/* ─── RIGHT ARROW ─── */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
-              className="flex items-center justify-center self-center"
+              className="flex md:flex-col items-center justify-center h-8 md:h-auto w-full md:w-auto"
             >
-              <div className="w-full flex items-center">
+              {/* Desktop arrow (horizontal) */}
+              <div className="hidden md:flex items-center w-full">
                 <div className="flex-1 h-0.5 bg-gradient-to-r from-orange-400 to-amber-400 rounded-full" />
-                <span className="text-orange-500 text-[8px] sm:text-[10px] md:text-sm leading-none font-black">›</span>
+                <span className="text-orange-500 text-sm leading-none font-black">›</span>
+              </div>
+              {/* Mobile arrow (vertical) */}
+              <div className="flex md:hidden flex-col items-center h-8 justify-center">
+                <div className="h-6 w-0.5 bg-gradient-to-b from-orange-400 to-amber-400 rounded-full" />
+                <span className="text-orange-500 text-sm leading-none font-black rotate-90 -mt-1">›</span>
               </div>
             </motion.div>
 
             {/* ═══ RIGHT PANEL — Connected ═══ */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="bg-gradient-to-br from-emerald-50/70 to-orange-50/20 rounded-xl sm:rounded-2xl md:rounded-3xl border border-emerald-200/30 p-2 sm:p-3.5 md:p-6"
+              className="bg-gradient-to-br from-emerald-50/70 to-orange-50/20 rounded-2xl md:rounded-3xl border border-emerald-200/30 p-5 md:p-6 w-full"
             >
-              <div className="text-[7px] sm:text-[8px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-emerald-500 mb-1.5 md:mb-3 text-center">With Oryn</div>
+              <div className="text-xs md:text-[10px] lg:text-xs font-bold uppercase tracking-[0.15em] text-emerald-500 mb-3 text-center">With Oryn</div>
 
-              <div className="flex flex-col gap-1 sm:gap-1.5 md:gap-2">
+              <div className="flex flex-col gap-2 md:gap-1.5 lg:gap-2">
                 {[
                   { icon: '🎯', label: 'Goals', sub: 'Track progress' },
                   { icon: '🔥', label: 'Habits', sub: 'Build streaks' },
@@ -818,24 +830,24 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
                 ].map((item, i) => (
                   <motion.div
                     key={item.label}
-                    initial={{ opacity: 0, x: 8 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.35 + i * 0.05 }}
-                    className="flex items-center gap-1 sm:gap-1.5 md:gap-2 bg-white border border-emerald-200/40 rounded-md sm:rounded-lg md:rounded-xl px-1.5 py-1 sm:px-2 sm:py-1.5 md:px-3 md:py-2 shadow-sm shadow-emerald-500/[0.04]"
+                    className="flex items-center gap-2 md:gap-1.5 lg:gap-2 bg-white border border-emerald-200/40 rounded-xl md:rounded-lg lg:rounded-xl px-3 py-2 md:px-2 md:py-1.5 lg:px-3 lg:py-2 shadow-sm shadow-emerald-500/[0.04]"
                   >
-                    <span className="text-[9px] sm:text-[11px] md:text-sm leading-none shrink-0">{item.icon}</span>
+                    <span className="text-sm md:text-[11px] lg:text-sm leading-none shrink-0">{item.icon}</span>
                     <div className="flex-1 min-w-0">
-                      <span className="text-[7px] sm:text-[8px] md:text-[11px] font-bold text-slate-700 block truncate">{item.label}</span>
-                      <span className="text-[6px] sm:text-[7px] md:text-[9px] text-emerald-500/70 block truncate">{item.sub}</span>
+                      <span className="text-xs md:text-[8px] lg:text-[11px] font-bold text-slate-700 block truncate">{item.label}</span>
+                      <span className="text-[10px] md:text-[7px] lg:text-[9px] text-emerald-500/70 block truncate">{item.sub}</span>
                     </div>
-                    <CheckCircle2 size={8} className="text-emerald-400 shrink-0 w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3" />
+                    <CheckCircle2 className="text-emerald-400 shrink-0 w-3.5 h-3.5 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3" />
                   </motion.div>
                 ))}
               </div>
 
-              <div className="text-[6px] sm:text-[7px] md:text-[9px] text-emerald-500 font-bold mt-1.5 md:mt-3 text-center flex items-center justify-center gap-0.5">
-                <CheckCircle2 size={7} className="sm:w-2 sm:h-2 md:w-3 md:h-3" /> 1 app · everything connected
+              <div className="text-xs md:text-[9px] lg:text-xs text-emerald-500 font-bold mt-3 text-center flex items-center justify-center gap-0.5">
+                <CheckCircle2 className="w-3.5 h-3.5 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3" /> 1 app · everything connected
               </div>
             </motion.div>
           </div>
