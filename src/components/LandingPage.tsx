@@ -806,7 +806,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
               </div>
               <div className="mt-3 md:mt-4 text-center">
                 <div className="text-sm md:text-xl font-black text-slate-900 tracking-tight">ORYN</div>
-                <div className="text-[8px] md:text-[10px] font-medium text-slate-400 tracking-wider uppercase whitespace-nowrap">one system</div>
+                <div className="text-[8px] md:text-[10px] font-medium text-slate-400 tracking-wider uppercase whitespace-nowrap">One System. Zero Chaos.</div>
               </div>
             </motion.div>
 
