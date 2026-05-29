@@ -670,17 +670,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)', backgroundSize: '32px 32px' }} />
 
         <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
-          {/* Section badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-4"
-          >
-            <span className="inline-flex items-center gap-2 text-orange-500 text-xs font-bold uppercase tracking-[0.2em] bg-orange-50 border border-orange-200/60 px-4 py-1.5 rounded-full">
-              <Zap size={13} /> The Core Idea
-            </span>
-          </motion.div>
+
 
           {/* Headline */}
           <motion.div
