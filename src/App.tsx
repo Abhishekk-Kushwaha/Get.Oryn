@@ -6,7 +6,11 @@ import { VALID_VIEWS, type ViewType } from "./hooks/useAppRouter";
 const AppContent = lazy(() => import("./AppContent"));
 
 export default function App() {
-  const [showApp, setShowApp] = useState(false);
+  const [showApp, setShowApp] = useState(() => {
+    const path = window.location.pathname.replace(/\/$/, "");
+    const hash = window.location.hash.replace("#", "");
+    return path === "/demo" || VALID_VIEWS.includes(hash as ViewType);
+  });
   const savedScrollPositionRef = useRef(0);
 
   // Restore scroll position when leaving the app back to the landing page
@@ -20,25 +24,34 @@ export default function App() {
   }, [showApp]);
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace("#", "");
-      if (!hash) {
-        setShowApp(false);
-      } else if (VALID_VIEWS.includes(hash as ViewType)) {
+    const isDemoUrl = (path: string, hash: string) => {
+      const cleanPath = path.replace(/\/$/, "");
+      const cleanHash = hash.replace("#", "");
+      return cleanPath === "/demo" || VALID_VIEWS.includes(cleanHash as ViewType);
+    };
+
+    const handleNavigation = () => {
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+      if (isDemoUrl(path, hash)) {
         setShowApp(true);
+      } else {
+        setShowApp(false);
       }
     };
 
-    window.addEventListener("hashchange", handleHashChange);
+    window.addEventListener("popstate", handleNavigation);
+    window.addEventListener("hashchange", handleNavigation);
 
-    // Initial check: if loaded with a valid app view, show the app immediately.
+    // Initial check: if loaded with a valid app view or demo path, show the app immediately.
     // Seed a landing-page history entry so Back exits the demo instead of
     // closing a direct app link.
+    const initialPath = window.location.pathname;
     const initialHash = window.location.hash.replace("#", "");
-    if (VALID_VIEWS.includes(initialHash as ViewType)) {
+    if (isDemoUrl(initialPath, window.location.hash)) {
       if (!window.history.state?.orynDemoEntry) {
-        const landingUrl = `${window.location.pathname}${window.location.search}`;
-        const appUrl = `${landingUrl}#${initialHash}`;
+        const landingUrl = "/";
+        const appUrl = `/demo#${VALID_VIEWS.includes(initialHash as ViewType) ? initialHash : "today"}`;
         window.history.replaceState({ orynLandingEntry: true }, "", landingUrl);
         window.history.pushState({ orynDemoEntry: true }, "", appUrl);
       }
@@ -46,23 +59,23 @@ export default function App() {
     }
 
     return () => {
-      window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("popstate", handleNavigation);
+      window.removeEventListener("hashchange", handleNavigation);
     };
   }, []);
 
   const handleEnterApp = () => {
     savedScrollPositionRef.current = window.scrollY || document.documentElement.scrollTop || 0;
-    const landingUrl = `${window.location.pathname}${window.location.search}`;
     setShowApp(true);
-    window.history.pushState({ orynDemoEntry: true }, "", `${landingUrl}#today`);
+    window.history.pushState({ orynDemoEntry: true }, "", "/demo#today");
   };
 
   const handleExitApp = () => {
     setShowApp(false);
-    window.history.replaceState(
+    window.history.pushState(
       { orynLandingEntry: true },
       "",
-      `${window.location.pathname}${window.location.search}`,
+      "/",
     );
   };
 

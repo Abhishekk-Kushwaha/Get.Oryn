@@ -373,6 +373,71 @@
   --color-app-accent-bg: var(--color-primary-container);
 }
 
+/* ================================================================
+   SHADCN UI VARIABLES (mapped to Oryn theme)
+   ================================================================ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary-shadcn: var(--primary-shadcn);
+  --color-primary-shadcn-foreground: var(--primary-shadcn-foreground);
+  --color-secondary-shadcn: var(--secondary-shadcn);
+  --color-secondary-shadcn-foreground: var(--secondary-shadcn-foreground);
+  --animate-border-beam: border-beam calc(var(--duration)*1s) infinite linear;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0c1016;
+  --card: #ffffff;
+  --card-foreground: #0c1016;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #f1f5f9;
+  --accent-foreground: #0c1016;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0c1016;
+  --primary-shadcn: #0c1016;
+  --primary-shadcn-foreground: #ffffff;
+  --secondary-shadcn: #f1f5f9;
+  --secondary-shadcn-foreground: #0c1016;
+  --radius: 8px;
+}
+
+.dark {
+  --background: #090b0f;
+  --foreground: #f8fafc;
+  --card: #0f1318;
+  --card-foreground: #f8fafc;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #1e293b;
+  --accent-foreground: #f8fafc;
+  --destructive: #dc2626;
+  --destructive-foreground: #f8fafc;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #f8fafc;
+  --primary-shadcn: #f8fafc;
+  --primary-shadcn-foreground: #0f1318;
+  --secondary-shadcn: #1e293b;
+  --secondary-shadcn-foreground: #f8fafc;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
@@ -558,4 +623,10 @@ body::-webkit-scrollbar-thumb,
   animation: assign-tasks-pulse-glow 2s infinite ease-in-out !important;
 }
 
+/* Border beam animation for feature cards */
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
 

@@ -6,6 +6,7 @@ import {
   ChevronDown, Check, Users, TrendingUp, Clock,
   Flame, BarChart3, Brain, Lock, Sparkles, X
 } from "lucide-react";
+import { Hero195 } from "@/src/components/ui/hero-195";
 
 // ─── Animated counter hook ───────────────────────────────────────
 function useCountUp(end: number, duration = 2000, startOnView = true) {
@@ -31,6 +32,20 @@ function useCountUp(end: number, duration = 2000, startOnView = true) {
 export function LandingPage({ onEnter }: { onEnter: () => void }) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  // ─── Pricing URL Routing ─────────────────────────────────────────
+  const pricingRef = useRef<HTMLDivElement>(null);
+  const pricingInView = useInView(pricingRef, { amount: 0.3 }); // trigger when 30% visible
+
+  useEffect(() => {
+    if (pricingInView) {
+      window.history.replaceState(null, "", "/pricing");
+    } else {
+      // Revert to root if we scroll away from pricing
+      if (window.location.pathname === "/pricing") {
+        window.history.replaceState(null, "", "/");
+      }
+    }
+  }, [pricingInView]);
 
   // ─── Scroll-driven paper curl animation ───────────────────────
   const paperRef = useRef<HTMLDivElement>(null);
@@ -664,6 +679,9 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
         </div>
       </div>
 
+      {/* ═══════════ FEATURES — TABBED DASHBOARD PREVIEW ═══════════ */}
+      <Hero195 />
+
       {/* ═══════════ THE CORE IDEA — EVERYTHING CONNECTED ═══════════ */}
       <div className="bg-white py-16 md:py-28 overflow-hidden relative">
         {/* Subtle dot grid background */}
@@ -938,7 +956,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
       </div>
 
       {/* ═══════════ PRICING ═══════════ */}
-      <div id="pricing" className="bg-slate-50 py-20 md:py-28 border-t border-slate-200/80 relative overflow-hidden">
+      <div id="pricing" ref={pricingRef} className="bg-slate-50 py-20 md:py-28 border-t border-slate-200/80 relative overflow-hidden">
         {/* Subtle dot grid in background */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         
