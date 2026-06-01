@@ -33,14 +33,22 @@ export function LandingPage({ onEnter, onNavigate }: { onEnter: () => void; onNa
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeSection, setActiveSection] = useState("hero");
 
-  // Scroll to pricing section on mount if loading /pricing
+  // Scroll to pricing section on mount if loading /pricing, otherwise scroll to top if home
   useEffect(() => {
-    if (window.location.pathname === "/pricing") {
-      const timer = setTimeout(() => {
+    const timer = setTimeout(() => {
+      if (window.location.pathname === "/pricing") {
         scrollToSection("pricing");
-      }, 120);
-      return () => clearTimeout(timer);
-    }
+      } else if (window.location.pathname === "/") {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        const container = document.querySelector(".overflow-y-auto");
+        if (container) {
+          container.scrollTop = 0;
+        }
+      }
+    }, 120);
+    return () => clearTimeout(timer);
   }, []);
 
   // ─── Scroll Spy & URL History Updates ──────────────────────────────

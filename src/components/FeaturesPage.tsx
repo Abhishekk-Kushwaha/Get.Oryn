@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Hero195 } from "./ui/hero-195";
 
 interface FeaturesPageProps {
@@ -7,17 +7,28 @@ interface FeaturesPageProps {
 }
 
 export function FeaturesPage({ onEnter, onNavigate }: FeaturesPageProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   // Set window path/hash correctly on mount
   useEffect(() => {
     if (window.location.pathname !== "/features") {
       window.history.replaceState(null, "", "/features");
     }
-    // Scroll to top when page is loaded
-    window.scrollTo({ top: 0, behavior: "instant" as any });
+    // Scroll both window and container to top after a short delay
+    const timer = setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      if (containerRef.current) {
+        containerRef.current.scrollTop = 0;
+      }
+    }, 60);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 overflow-y-auto overflow-x-hidden custom-scrollbar font-sans selection:bg-orange-500/30">
+    <div ref={containerRef} className="min-h-screen bg-slate-50 text-slate-900 overflow-y-auto overflow-x-hidden custom-scrollbar font-sans selection:bg-orange-500/30">
       <ScrollOverflowHandler />
 
       {/* Spacer or very small elegant top bar/logo bar so the page doesn't look empty at the top */}
