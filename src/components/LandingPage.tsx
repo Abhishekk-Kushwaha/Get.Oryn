@@ -4,9 +4,9 @@ import {
   ArrowRight, Target, Activity, CalendarDays, LayoutDashboard, 
   CheckCircle2, Zap, Star, Shield, 
   ChevronDown, Check, Users, TrendingUp, Clock,
-  Flame, BarChart3, Brain, Lock, Sparkles, X
+  Flame, BarChart3, Brain, Lock, Sparkles, X, Menu
 } from "lucide-react";
-import { Hero195 } from "@/src/components/ui/hero-195";
+
 
 // ─── Animated counter hook ───────────────────────────────────────
 function useCountUp(end: number, duration = 2000, startOnView = true) {
@@ -29,23 +29,135 @@ function useCountUp(end: number, duration = 2000, startOnView = true) {
   return { count, ref };
 }
 
-export function LandingPage({ onEnter }: { onEnter: () => void }) {
+export function LandingPage({ onEnter, onNavigate }: { onEnter: () => void; onNavigate: (path: string) => void }) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [activeSection, setActiveSection] = useState("hero");
 
-  // ─── Pricing URL Routing ─────────────────────────────────────────
-  const pricingRef = useRef<HTMLDivElement>(null);
-  const pricingInView = useInView(pricingRef, { amount: 0.3 }); // trigger when 30% visible
-
+  // Scroll to pricing section on mount if loading /pricing
   useEffect(() => {
-    if (pricingInView) {
+    if (window.location.pathname === "/pricing") {
+      const timer = setTimeout(() => {
+        scrollToSection("pricing");
+      }, 120);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  // ─── Scroll Spy & URL History Updates ──────────────────────────────
+  useEffect(() => {
+    let lastActive = "hero";
+    const handleScrollSpy = (e?: Event) => {
+      if (window.location.pathname === "/features") {
+        return;
+      }
+      // Resolve scroll position from either the scrolling container, document, or window
+      let scrollY = 0;
+      if (e && e.target && e.target !== document) {
+        scrollY = (e.target as HTMLElement).scrollTop;
+      } else {
+        scrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        if (scrollY === 0) {
+          const container = document.querySelector(".overflow-y-auto");
+          if (container) {
+            scrollY = container.scrollTop;
+          }
+        }
+      }
+
+      // Highlight FAQ if at bottom
+      const docHeight = document.documentElement.scrollHeight || document.body.scrollHeight || 0;
+      const isAtBottom = window.innerHeight + scrollY >= docHeight - 100;
+      let currentSection = "hero";
+
+      if (scrollY < 80) {
+        currentSection = "hero";
+      } else if (isAtBottom) {
+        currentSection = "faq";
+      } else {
+        const sections = [
+          { id: "pricing", el: document.getElementById("pricing") },
+          { id: "faq", el: document.getElementById("faq") },
+        ];
+        const scrollPosition = scrollY + window.innerHeight - 150;
+        currentSection = "other"; // fallback past hero threshold
+
+        for (const section of sections) {
+          if (section.el) {
+            const rect = section.el.getBoundingClientRect();
+            const top = rect.top + scrollY;
+            if (scrollPosition >= top) {
+              currentSection = section.id;
+            }
+          }
+        }
+      }
+
+      if (currentSection !== lastActive) {
+        lastActive = currentSection;
+        setActiveSection(currentSection);
+
+        // Update URL path/hash cleanly to match section
+        if (currentSection === "hero" || currentSection === "other") {
+          if (window.location.pathname !== "/" || window.location.hash !== "") {
+            window.history.replaceState(null, "", "/");
+          }
+        } else if (currentSection === "pricing") {
+          if (window.location.pathname !== "/pricing") {
+            window.history.replaceState(null, "", "/pricing");
+          }
+        } else {
+          if (window.location.hash !== `#${currentSection}` || window.location.pathname !== "/") {
+            window.history.replaceState(null, "", `/#${currentSection}`);
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScrollSpy, { passive: true });
+    document.addEventListener("scroll", handleScrollSpy, { passive: true, capture: true });
+    
+    // Initial trigger
+    handleScrollSpy();
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollSpy);
+      document.removeEventListener("scroll", handleScrollSpy, { capture: true });
+    };
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    if (id === "hero") {
+      const container = document.querySelector(".overflow-y-auto");
+      if (container) {
+        container.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleNavClick = (sectionId: string) => {
+    console.log("[LandingPage] handleNavClick called for:", sectionId);
+    if (sectionId === "features") {
+      console.log("[LandingPage] Navigating to /features");
+      onNavigate("/features");
+      return;
+    }
+    scrollToSection(sectionId);
+    if (sectionId === "hero") {
+      window.history.replaceState(null, "", "/");
+    } else if (sectionId === "pricing") {
       window.history.replaceState(null, "", "/pricing");
     } else {
-      // Revert to root if we scroll away from pricing
-      if (window.location.pathname === "/pricing") {
-        window.history.replaceState(null, "", "/");
-      }
+      window.history.replaceState(null, "", `/#${sectionId}`);
     }
-  }, [pricingInView]);
+  };
+
+  const pricingRef = useRef<HTMLDivElement>(null);
 
   // ─── Scroll-driven paper curl animation ───────────────────────
   const paperRef = useRef<HTMLDivElement>(null);
@@ -121,11 +233,52 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
   return (
     <div className="min-h-screen bg-[#000000] text-slate-900 overflow-y-auto overflow-x-hidden custom-scrollbar font-sans selection:bg-orange-500/30">
       <ScrollOverflowHandler />
-      
 
+      {/* ═══════════ MINIMALIST BOTTOM BAR ═══════════ */}
+      <AnimatePresence>
+        {activeSection !== "hero" && (
+          <motion.header
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="fixed bottom-0 left-0 right-0 z-50 w-full bg-slate-50/95 backdrop-blur-md border-t border-slate-200/80"
+          >
+            <div className="max-w-5xl mx-auto px-6 h-12 flex items-center justify-between">
+              {/* Navigation links */}
+              <div className="flex items-center gap-6 sm:gap-8">
+                <button
+                  onClick={() => handleNavClick("features")}
+                  className={`text-sm font-semibold tracking-wide transition-colors cursor-pointer focus:outline-none ${
+                    activeSection === "features" ? "text-slate-900 font-extrabold" : "text-slate-500 hover:text-slate-900"
+                  }`}
+                >
+                  Features
+                </button>
+                <button
+                  onClick={() => handleNavClick("pricing")}
+                  className={`text-sm font-semibold tracking-wide transition-colors cursor-pointer focus:outline-none ${
+                    activeSection === "pricing" ? "text-slate-900 font-extrabold" : "text-slate-500 hover:text-slate-900"
+                  }`}
+                >
+                  Pricing
+                </button>
+              </div>
+
+              {/* CTA Button */}
+              <button
+                onClick={onEnter}
+                className="px-4 py-1.5 bg-gradient-to-r from-orange-500 to-amber-500 hover:opacity-90 hover:scale-[1.02] active:scale-95 text-white text-xs font-bold rounded-full transition-all cursor-pointer focus:outline-none shadow-md shadow-orange-500/10"
+              >
+                Try Demo
+              </button>
+            </div>
+          </motion.header>
+        )}
+      </AnimatePresence>
 
       {/* ═══════════ HERO SECTION (exactly matching screenshot) ═══════════ */}
-      <div ref={heroRef} className="fixed top-0 left-0 right-0 z-0 w-full flex flex-col min-h-screen bg-[#000000] text-white overflow-hidden pb-16 md:pb-24">
+      <div id="hero" ref={heroRef} className="fixed top-0 left-0 right-0 z-0 w-full flex flex-col min-h-screen bg-[#000000] text-white overflow-hidden pb-16 md:pb-24">
         {/* Style block for twinkling and falling/shooting star animations */}
         <style dangerouslySetInnerHTML={{__html: `
           @keyframes twinkle-star {
@@ -679,9 +832,6 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
         </div>
       </div>
 
-      {/* ═══════════ FEATURES — TABBED DASHBOARD PREVIEW ═══════════ */}
-      <Hero195 />
-
       {/* ═══════════ THE CORE IDEA — EVERYTHING CONNECTED ═══════════ */}
       <div className="bg-white py-16 md:py-28 overflow-hidden relative">
         {/* Subtle dot grid background */}
@@ -1081,7 +1231,7 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
 
 
       {/* ═══════════ FAQ ═══════════ */}
-      <div className="bg-slate-50 py-20 md:py-28 border-t border-slate-200">
+      <div id="faq" className="bg-slate-50 py-20 md:py-28 border-t border-slate-200">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900">Got questions?</h2>

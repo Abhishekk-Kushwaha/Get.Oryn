@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
 import { LandingPage } from "./components/LandingPage";
+import { FeaturesPage } from "./components/FeaturesPage";
 import { VALID_VIEWS, type ViewType } from "./hooks/useAppRouter";
 
 const AppContent = lazy(() => import("./AppContent"));
@@ -10,6 +11,9 @@ export default function App() {
     const path = window.location.pathname.replace(/\/$/, "");
     const hash = window.location.hash.replace("#", "");
     return path === "/demo" || VALID_VIEWS.includes(hash as ViewType);
+  });
+  const [landingPath, setLandingPath] = useState(() => {
+    return window.location.pathname.replace(/\/$/, "") || "/";
   });
   const savedScrollPositionRef = useRef(0);
 
@@ -37,6 +41,7 @@ export default function App() {
         setShowApp(true);
       } else {
         setShowApp(false);
+        setLandingPath(path.replace(/\/$/, "") || "/");
       }
     };
 
@@ -44,8 +49,6 @@ export default function App() {
     window.addEventListener("hashchange", handleNavigation);
 
     // Initial check: if loaded with a valid app view or demo path, show the app immediately.
-    // Seed a landing-page history entry so Back exits the demo instead of
-    // closing a direct app link.
     const initialPath = window.location.pathname;
     const initialHash = window.location.hash.replace("#", "");
     if (isDemoUrl(initialPath, window.location.hash)) {
@@ -70,8 +73,15 @@ export default function App() {
     window.history.pushState({ orynDemoEntry: true }, "", "/demo#today");
   };
 
+  const handleLandingNavigate = (path: string) => {
+    console.log("[App] handleLandingNavigate called with path:", path);
+    window.history.pushState({ orynLandingEntry: true }, "", path);
+    setLandingPath(path.replace(/\/$/, "") || "/");
+  };
+
   const handleExitApp = () => {
     setShowApp(false);
+    setLandingPath("/");
     window.history.pushState(
       { orynLandingEntry: true },
       "",
@@ -79,8 +89,15 @@ export default function App() {
     );
   };
 
+  console.log("[App] rendering state: showApp =", showApp, "landingPath =", landingPath);
+
   if (!showApp) {
-    return <LandingPage onEnter={handleEnterApp} />;
+    if (landingPath === "/features") {
+      console.log("[App] Rendering FeaturesPage component");
+      return <FeaturesPage onEnter={handleEnterApp} onNavigate={handleLandingNavigate} />;
+    }
+    console.log("[App] Rendering LandingPage component");
+    return <LandingPage onEnter={handleEnterApp} onNavigate={handleLandingNavigate} />;
   }
 
   return (
