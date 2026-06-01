@@ -1079,15 +1079,6 @@ export function LandingPage({ onEnter }: { onEnter: () => void }) {
         </div>
       </div>
 
-      {/* ═══════════ TRUST SIGNALS ═══════════ */}
-      <div className="bg-white py-12 border-t border-slate-100">
-        <div className="max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-8 text-slate-400 text-sm">
-          <div className="flex items-center gap-2"><Shield size={16} className="text-emerald-500" /> <span>AES-256 Encryption</span></div>
-          <div className="flex items-center gap-2"><Lock size={16} className="text-blue-500" /> <span>SOC 2 Compliant</span></div>
-          <div className="flex items-center gap-2"><Users size={16} className="text-orange-500" /> <span>12,000+ Active Users</span></div>
-          <div className="flex items-center gap-2"><Sparkles size={16} className="text-purple-500" /> <span>4.9★ Average Rating</span></div>
-        </div>
-      </div>
 
       {/* ═══════════ FAQ ═══════════ */}
       <div className="bg-slate-50 py-20 md:py-28 border-t border-slate-200">

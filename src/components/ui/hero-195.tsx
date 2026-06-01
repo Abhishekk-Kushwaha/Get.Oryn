@@ -11,6 +11,9 @@ import {
   TrendingUp,
   Clock,
   Plus,
+  ListTodo,
+  ChevronLeft,
+  GripVertical,
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/src/components/ui/tabs";
 import { BorderBeam } from "@/src/components/ui/border-beam";
@@ -18,9 +21,9 @@ import { BorderBeam } from "@/src/components/ui/border-beam";
 // ─── Feature Data ─────────────────────────────────────────────────
 const features = [
   {
-    id: "planner",
+    id: "focus",
     icon: CalendarDays,
-    label: "Daily Planner",
+    label: "Focus Mode",
     headline: "Your day, designed for action",
     description:
       "Wake up knowing exactly what to do. Drag tasks from your goals into today's plan — and crush them one by one.",
@@ -28,6 +31,19 @@ const features = [
       "Auto-prioritize tasks by deadline & goal urgency",
       "Focus Mode eliminates distractions",
       "Drag-and-drop scheduling",
+    ],
+  },
+  {
+    id: "planner",
+    icon: ListTodo,
+    label: "Daily Planner",
+    headline: "Plan your day with precision",
+    description:
+      "Keep track of your daily tasks and schedule. Everything in one place.",
+    bullets: [
+      "Time blocking",
+      "Task management",
+      "Daily reflections",
     ],
   },
   {
@@ -71,39 +87,15 @@ const features = [
   },
 ];
 
-// ─── Mockup Renderers ─────────────────────────────────────────────
-
-function PlannerMockup() {
+function FocusMockup() {
   const focusTasks = [
-    { 
-      label: "Morning Meditation", 
-      streak: "1 days", 
-      color: "emerald",
-      bg: "bg-[#ecfdf5]", 
-      border: "border-[#a7f3d0]", 
-      iconColor: "text-[#10b981]" 
-    },
-    { 
-      label: "Drink 2L Water", 
-      streak: "19 days", 
-      color: "emerald",
-      bg: "bg-[#ecfdf5]", 
-      border: "border-[#a7f3d0]", 
-      iconColor: "text-[#10b981]" 
-    },
-    { 
-      label: "Write Journal", 
-      streak: "2 days", 
-      color: "purple",
-      bg: "bg-[#faf5ff]", 
-      border: "border-[#e9d5ff]", 
-      iconColor: "text-[#a855f7]" 
-    },
+    { label: "Morning Meditation", streak: "1 days", color: "emerald", bg: "bg-[#ecfdf5]", border: "border-[#a7f3d0]", iconColor: "text-[#10b981]" },
+    { label: "Drink 2L Water", streak: "19 days", color: "emerald", bg: "bg-[#ecfdf5]", border: "border-[#a7f3d0]", iconColor: "text-[#10b981]" },
+    { label: "Write Journal", streak: "2 days", color: "purple", bg: "bg-[#faf5ff]", border: "border-[#e9d5ff]", iconColor: "text-[#a855f7]" },
   ];
 
   return (
     <div className="w-full space-y-5">
-      {/* Top Stats Card */}
       <motion.div 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -126,13 +118,11 @@ function PlannerMockup() {
         <div className="text-2xl font-bold text-slate-800">67%</div>
       </motion.div>
 
-      {/* Focus Section Header */}
       <div className="flex items-center justify-between px-1">
         <h3 className="text-[17px] font-bold text-slate-800 tracking-tight">Focus</h3>
         <span className="text-[13px] font-medium text-slate-400">3 open</span>
       </div>
 
-      {/* Focus Tasks List */}
       <div className="space-y-3">
         {focusTasks.map((task, i) => (
           <motion.div
@@ -143,12 +133,9 @@ function PlannerMockup() {
             className="bg-white rounded-[18px] px-4 py-3.5 shadow-[0_2px_8px_rgba(0,0,0,0.03)] border border-slate-100 flex items-center justify-between"
           >
             <div className="flex items-center gap-3.5">
-              {/* Icon Circle */}
               <div className={`w-[38px] h-[38px] rounded-full flex items-center justify-center border ${task.bg} ${task.border} ${task.iconColor}`}>
                 <Flame size={16} strokeWidth={2.5} />
               </div>
-              
-              {/* Text */}
               <div>
                 <div className="text-[15px] font-bold text-slate-800 tracking-tight mb-0.5">
                   {task.label}
@@ -161,13 +148,95 @@ function PlannerMockup() {
                 </div>
               </div>
             </div>
-
-            {/* Done Button */}
             <button className="px-4 py-1.5 rounded-full border border-slate-200 bg-slate-50/50 hover:bg-slate-100 transition-colors text-[13px] font-semibold text-slate-500">
               Done
             </button>
           </motion.div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function PlannerMockup() {
+  return (
+    <div className="w-full bg-white rounded-[20px] shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-100 overflow-hidden flex flex-col">
+      {/* Top Header */}
+      <div className="px-5 pt-4 pb-2 flex items-center justify-between">
+        {/* Toggle */}
+        <div className="flex items-center bg-slate-100/80 rounded-lg p-0.5">
+          <button className="bg-white shadow-[0_1px_2px_rgba(0,0,0,0.05)] rounded-md px-2.5 py-1 text-[9px] font-bold tracking-widest text-slate-800">WEEK</button>
+          <button className="px-2.5 py-1 text-[9px] font-bold tracking-widest text-slate-400 hover:text-slate-600 transition-colors">MONTH</button>
+        </div>
+        {/* Assign Tasks Button */}
+        <button className="flex items-center gap-1 bg-orange-50/80 border border-orange-200/50 rounded-full px-3 py-1 text-orange-500 hover:bg-orange-100/50 transition-colors">
+          <Plus size={10} strokeWidth={3} />
+          <span className="text-[9px] font-bold tracking-widest">ASSIGN TASKS</span>
+        </button>
+      </div>
+
+      {/* Sub Header (Week Date) */}
+      <div className="px-5 pb-3 flex items-center gap-4">
+        <button className="text-slate-400 hover:text-slate-600 transition-colors">
+          <ChevronLeft size={14} strokeWidth={2.5} />
+        </button>
+        <div className="text-[11px] font-bold tracking-[0.15em] text-slate-900">WEEK OF JUN 1</div>
+        <button className="text-slate-400 hover:text-slate-600 transition-colors">
+          <ChevronRight size={14} strokeWidth={2.5} />
+        </button>
+      </div>
+
+      <div className="border-t border-slate-100" />
+
+      {/* Days List */}
+      <div className="flex flex-col">
+        {/* MON 1 */}
+        <div className="relative bg-slate-50/60 px-5 py-3.5 flex items-start sm:items-center gap-6 border-b border-slate-100/80 group">
+          <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-orange-500" />
+          <div className="w-8 shrink-0 flex flex-col items-center">
+            <span className="text-[9px] font-bold tracking-[0.15em] text-orange-500 mb-0.5">MON</span>
+            <span className="text-[17px] font-bold text-slate-900 leading-none">1</span>
+          </div>
+          <button className="flex items-center gap-1.5 text-slate-400 font-bold text-[10px] tracking-widest hover:text-slate-500 transition-colors mt-1 sm:mt-0">
+            <Plus size={12} strokeWidth={2.5} /> ADD TASK
+          </button>
+        </div>
+
+        {/* TUE 2 */}
+        <div className="px-5 py-3.5 flex items-start sm:items-center gap-6 border-b border-slate-100/80">
+          <div className="w-8 shrink-0 flex flex-col items-center">
+            <span className="text-[9px] font-bold tracking-[0.15em] text-slate-300 mb-0.5">TUE</span>
+            <span className="text-[17px] font-bold text-slate-500 leading-none">2</span>
+          </div>
+        </div>
+
+        {/* WED 3 */}
+        <div className="px-5 py-3.5 flex items-start sm:items-center gap-6 border-b border-slate-100/80">
+          <div className="w-8 shrink-0 flex flex-col items-center">
+            <span className="text-[9px] font-bold tracking-[0.15em] text-slate-300 mb-0.5">WED</span>
+            <span className="text-[17px] font-bold text-slate-500 leading-none">3</span>
+          </div>
+          <div className="flex-1 bg-slate-50/80 rounded-[10px] px-3 py-2.5 flex items-center gap-3 border border-slate-200/50 shadow-[0_1px_2px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing">
+            <GripVertical size={14} className="text-slate-300/80 shrink-0" />
+            <span className="text-[13px] font-semibold text-slate-700">Implement Authentication</span>
+          </div>
+        </div>
+
+        {/* THU 4 */}
+        <div className="px-5 py-3.5 flex items-start sm:items-center gap-6 border-b border-slate-100/80">
+          <div className="w-8 shrink-0 flex flex-col items-center">
+            <span className="text-[9px] font-bold tracking-[0.15em] text-slate-300 mb-0.5">THU</span>
+            <span className="text-[17px] font-bold text-slate-500 leading-none">4</span>
+          </div>
+        </div>
+
+        {/* FRI 5 */}
+        <div className="px-5 py-3.5 flex items-start sm:items-center gap-6">
+          <div className="w-8 shrink-0 flex flex-col items-center">
+            <span className="text-[9px] font-bold tracking-[0.15em] text-slate-300 mb-0.5">FRI</span>
+            <span className="text-[17px] font-bold text-slate-500 leading-none">5</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -441,6 +510,7 @@ function AnalyticsMockup() {
 }
 
 const mockupMap: Record<string, React.FC> = {
+  focus: FocusMockup,
   planner: PlannerMockup,
   goals: GoalsMockup,
   habits: HabitsMockup,
@@ -449,7 +519,7 @@ const mockupMap: Record<string, React.FC> = {
 
 // ─── Main Hero195 Feature Section ─────────────────────────────────
 export function Hero195() {
-  const [activeTab, setActiveTab] = React.useState("planner");
+  const [activeTab, setActiveTab] = React.useState("focus");
 
   return (
     <section id="features" className="bg-white py-20 md:py-28 overflow-hidden relative">
