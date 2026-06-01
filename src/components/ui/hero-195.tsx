@@ -522,7 +522,7 @@ export function Hero195() {
   const [activeTab, setActiveTab] = React.useState("focus");
 
   return (
-    <section id="features" className="bg-white py-20 md:py-28 overflow-hidden relative">
+    <section id="features" className="bg-white pt-8 pb-20 md:pt-10 md:pb-28 overflow-hidden relative">
       {/* Subtle dot grid background */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"

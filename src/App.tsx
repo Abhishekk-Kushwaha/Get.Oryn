@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
 import { LandingPage } from "./components/LandingPage";
 import { FeaturesPage } from "./components/FeaturesPage";
+import { PricingPage } from "./components/PricingPage";
 import { VALID_VIEWS, type ViewType } from "./hooks/useAppRouter";
 
 const AppContent = lazy(() => import("./AppContent"));
@@ -28,6 +29,10 @@ export default function App() {
   }, [showApp]);
 
   useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
     const isDemoUrl = (path: string, hash: string) => {
       const cleanPath = path.replace(/\/$/, "");
       const cleanHash = hash.replace("#", "");
@@ -77,6 +82,7 @@ export default function App() {
     console.log("[App] handleLandingNavigate called with path:", path);
     window.history.pushState({ orynLandingEntry: true }, "", path);
     setLandingPath(path.replace(/\/$/, "") || "/");
+    window.scrollTo(0, 0);
   };
 
   const handleExitApp = () => {
@@ -94,10 +100,14 @@ export default function App() {
   if (!showApp) {
     if (landingPath === "/features") {
       console.log("[App] Rendering FeaturesPage component");
-      return <FeaturesPage onEnter={handleEnterApp} onNavigate={handleLandingNavigate} />;
+      return <FeaturesPage key="features-page" onEnter={handleEnterApp} onNavigate={handleLandingNavigate} />;
+    }
+    if (landingPath === "/pricing") {
+      console.log("[App] Rendering PricingPage component");
+      return <PricingPage key="pricing-page" onEnter={handleEnterApp} onNavigate={handleLandingNavigate} />;
     }
     console.log("[App] Rendering LandingPage component");
-    return <LandingPage onEnter={handleEnterApp} onNavigate={handleLandingNavigate} />;
+    return <LandingPage key="landing-page" onEnter={handleEnterApp} onNavigate={handleLandingNavigate} />;
   }
 
   return (

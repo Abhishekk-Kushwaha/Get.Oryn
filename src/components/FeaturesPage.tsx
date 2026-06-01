@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { Hero195 } from "./ui/hero-195";
 
 interface FeaturesPageProps {
@@ -9,60 +9,54 @@ interface FeaturesPageProps {
 export function FeaturesPage({ onEnter, onNavigate }: FeaturesPageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Set window path/hash correctly on mount
+  // Robust scroll to top on mount
   useEffect(() => {
     if (window.location.pathname !== "/features") {
       window.history.replaceState(null, "", "/features");
     }
-    // Scroll both window and container to top after a short delay
-    const timer = setTimeout(() => {
+    
+    const scrollToTop = () => {
       window.scrollTo(0, 0);
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
+      const rootEl = document.getElementById("root");
+      if (rootEl) rootEl.scrollTop = 0;
       if (containerRef.current) {
         containerRef.current.scrollTop = 0;
       }
-    }, 60);
+    };
 
-    return () => clearTimeout(timer);
+    // Fire immediately, then cascade to beat any browser history scroll restoration
+    scrollToTop();
+    const t1 = setTimeout(scrollToTop, 10);
+    const t2 = setTimeout(scrollToTop, 50);
+    const t3 = setTimeout(scrollToTop, 150);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
   }, []);
 
   return (
     <div ref={containerRef} className="min-h-screen bg-slate-50 text-slate-900 overflow-y-auto overflow-x-hidden custom-scrollbar font-sans selection:bg-orange-500/30">
       <ScrollOverflowHandler />
 
-      {/* Spacer or very small elegant top bar/logo bar so the page doesn't look empty at the top */}
-      <div className="bg-slate-50 border-b border-slate-200/50 py-4 px-6">
-        <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => onNavigate("/")}>
-            <img src="/logo.png" alt="Oryn Logo" className="w-5 h-5 object-contain" />
-            <span className="font-black text-sm tracking-tight text-slate-900">ORYN</span>
-          </div>
-          <button
-            onClick={onEnter}
-            className="text-xs font-bold text-slate-500 hover:text-slate-900 transition-colors"
-          >
-            Go to Demo →
-          </button>
-        </div>
-      </div>
-
       {/* Main Feature Component */}
-      <div className="py-8 md:py-16">
-        <Hero195 />
-      </div>
+      <Hero195 />
 
       {/* ═══════════ FOOTER ═══════════ */}
-      <footer className="bg-[#040506] py-10 px-8 border-t border-white/5 pb-24">
+      <footer className="bg-slate-50 py-10 px-8 border-t border-slate-200 pb-24 md:pb-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
           <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="Oryn Logo" className="w-4 h-4 object-contain" />
-            <span>© {new Date().getFullYear()} Oryn. All rights reserved.</span>
+            <img src="/logo.png" alt="Oryn Logo" className="w-4 h-4 object-contain grayscale opacity-70" />
+            <span className="font-medium">© {new Date().getFullYear()} Oryn. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6">
-            <span className="hover:text-white transition-colors cursor-pointer" onClick={() => window.open("https://twitter.com", "_blank")}>Twitter</span>
-            <span className="hover:text-white transition-colors cursor-pointer">Privacy</span>
-            <span className="hover:text-white transition-colors cursor-pointer">Terms</span>
+            <span className="hover:text-slate-900 font-medium transition-colors cursor-pointer" onClick={() => window.open("https://twitter.com", "_blank")}>Twitter</span>
+            <span className="hover:text-slate-900 font-medium transition-colors cursor-pointer">Privacy</span>
+            <span className="hover:text-slate-900 font-medium transition-colors cursor-pointer">Terms</span>
           </div>
         </div>
       </footer>
